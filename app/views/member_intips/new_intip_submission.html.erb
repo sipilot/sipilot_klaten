@@ -1,0 +1,139 @@
+<div data-controller="maps" class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">INTIP</h3>
+      <p class="mt-1 text-sm text-gray-500">
+        Tambah Inventaris Tanah Instansi Pemerintah
+      </p>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_with(url: intip_member_permohonan_submit_path, method: 'post', multipart: true) do |f| %>
+        <div class="grid grid-cols-6 gap-6">
+
+          <div class="col-span-6">
+            <label for="nui" class="block text-sm font-medium text-gray-700">NUI<span class="text-red-500">*</span></label>
+            <input type="text" name="nui" id="nui"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="nib" class="block text-sm font-medium text-gray-700">NIB</label>
+            <input type="text" name="nib" id="nib"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nama Instansi Pemerintah<span class="text-red-500">*</span></label>
+            <input type="text" name="name" id="name"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="hak_name" class="block text-sm font-medium text-gray-700">Alas Hak<span class="text-red-500">*</span></label>
+            <input type="text" name="hak_name" id="hak_name"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              Jenis Hak
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <%= select_tag "hak_type", options_from_collection_for_select(@hak_types, "id", "name"), include_blank: true, required: true, class: "max-w-lg block focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" %>
+            </div>
+          </div>
+
+          <div class="col-span-6">
+            <label for="hak_number" class="block text-sm font-medium text-gray-700">Hak Number<span class="text-red-500">*</span></label>
+            <input type="text" name="hak_number" id="hak_number" maxlength="5"  class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="date" class="block text-sm font-medium text-gray-700">Tanggal<span class="text-red-500">*</span></label>
+            <input type="date" name="date"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="time_range" class="block text-sm font-medium text-gray-700">Jangka Waktu<span class="text-red-500">*</span></label>
+            <input type="text" name="time_range" id="time_range" value="Selama Dipergunakan"  class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_control" class="block text-sm font-medium text-gray-700">Penguasaan Tanah<span class="text-red-500">*</span></label>
+            <input type="text" name="land_control" id="land_control"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_allocation" class="block text-sm font-medium text-gray-700">Peruntukan Tanah<span class="text-red-500">*</span></label>
+            <input type="text" name="land_allocation" id="land_allocation"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_use" class="block text-sm font-medium text-gray-700">Penggunaan Tanah<span class="text-red-500">*</span></label>
+            <input type="text" name="land_use" id="land_use"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_utilization" class="block text-sm font-medium text-gray-700">Pemanfaatan Tanah<span class="text-red-500">*</span></label>
+            <input type="text" name="land_utilization" id="land_utilization"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_size" class="block text-sm font-medium text-gray-700">Luas Tanah (M2)<span class="text-red-500">*</span></label>
+            <input type="text" name="land_size" id="land_size"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+          </div>
+
+          <div class="col-span-6">
+            <label for="image" class="block text-sm font-medium text-gray-700">Image<span class="text-red-500">*</span></label>
+            <%= file_field_tag 'image', direct_upload: true, required: true, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          </div>
+
+          <div class="col-span-6">
+            <label for="sub_district" class="block text-sm font-medium text-gray-700">Kecamatan<span class="text-red-500">*</span></label>
+            <%= select_tag "sub_district", options_from_collection_for_select(@sub_districts, "id", "name"), required: true, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          </div>
+
+          <div class="col-span-6">
+            <label for="village" class="block text-sm font-medium text-gray-700">Desa<span class="text-red-500">*</span></label>
+            <%= select_tag "village", options_from_collection_for_select(@villages, "id", "name"), required: true, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          </div>
+
+          <div class="col-span-6">
+            <label for="description" class="block text-sm font-medium text-gray-700">Keterangan<span class="text-red-500">*</span></label>
+            <%= text_area_tag 'description', nil, rows: 5, cols: 10, required: true, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+          </div>
+
+          <div class="col-span-6">
+            <label for="location" class="block text-sm font-medium text-gray-700">Cari Lokasi</label>
+            <input data-target="maps.field" type="text" name="location" id="location" data-target="maps.field" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="lattitude" class="block text-sm font-medium text-gray-700">Lat</label>
+            <input data-target="maps.latitude" type="text" name="lattitude" id="lattitude"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="col-span-6">
+            <label for="longitude" class="block text-sm font-medium text-gray-700">Long</label>
+            <input data-target="maps.longitude" type="text" name="longitude" id="longitude"   class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+          </div>
+
+          <div class="my-4 bg-white overflow-hidden shadow rounded-lg">      
+            <%= content_tag :div, nil, data: { target: "maps.map" }, class: "h-64" %>
+          </div>
+
+          <div class="col-span-6">
+            <label for="land_address" class="block text-sm font-medium text-gray-700">Alamat Tanah<span class="text-red-500">*</span></label>
+            <%= text_area_tag 'land_address', nil, data: { target: 'maps.address' }, rows: 5, cols: 10, required: true, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+            <p class="mt-2 text-sm text-gray-500" id="email-description">* Lengkapi detail alamat jika kurang akurat.</p>
+          </div>
+        </div>
+
+
+        <div class="flex justify-end mt-3">
+          <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Simpan
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,39 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Berkas Selesai") do |sheet|
+  sheet.add_row [
+      'No',
+      'Nama Instansi Pemerintah',
+      'NUI',
+      'NIB',
+      'Penguasaan Tanah',
+      'Peruntukan Tanah',
+      'Pengunaan Tanah',
+      'Pemanfaatan Tanah',
+      'Luas Tanah',
+      'Jenis Alas',
+      'Status Sertipikat',
+      'Jenis Hak',
+      'Alamat Tanah',
+      'Kecamatan',
+      'Desa'
+  ]
+  @intips.each.with_index(1) do |submission, index|
+    sheet.add_row [
+        index,
+        submission.name,
+        submission.nui,
+        submission.nib,
+        submission.land_control,
+        submission.land_allocation,
+        submission.land_use,
+        submission.land_utilization,
+        submission.land_size,
+        submission.alas_name,
+        submission.certificate_status,
+        submission.hak_name,
+        submission.land_address,
+        submission.sub_district_name,
+        submission.village_name
+    ]
+  end
+end

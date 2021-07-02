@@ -1,0 +1,21 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Import GPS") do |sheet|
+  sheet.add_row [
+      'Nomor Hak',
+      'Nama Pendaftar',
+      'Jenis Hak',
+      'Nama Lengkap (Sesuai Sertipikat)',
+      'Bertindak Atas',
+      'Lattitude',
+      'Longitude'
+  ]
+  sheet.add_row [
+    '123',
+    'Pendaftar satu',
+    'Hak Guna Bangunan (HGB)',
+    'Pemilik satu',
+    'Diri Sendiri',
+    '-7.695160224671814',
+    '110.60864661084307'
+  ]
+end

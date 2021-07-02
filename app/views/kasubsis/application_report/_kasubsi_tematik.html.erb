@@ -1,0 +1,93 @@
+<%= render 'shareds/section_title', title_name: 'Permohonan Layanan Validasi' %>
+<%= render "admins/shareds/column_date_search", action_path: dashboards_kasubsi_permohonan_path, action_data: @search %>
+<div class="p-4 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between ">
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+      <%= render 'shareds/tables/form_total_entries', action_path: dashboards_kasubsi_path %>
+  </div>
+
+  <div class="mt-3 flex sm:mt-0 sm:ml-4"></div>
+</div>
+
+<div class="flex flex-col py-5">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Kode", column: 'submission_code' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Nomor Hak", column: 'hak_number' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Nama Pendaftar", column: 'on_behalf' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Bertindak Atas", column: 'act_for' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Nama Pemilik Sertipikat", column: 'fullname' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "admins/shareds/column_header", title: "Jenis Hak", column: 'hak_type_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+               <%= render "admins/shareds/column_header", title: "Desa", column: 'village_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @submissions.each.with_index(1) do |submission, index| %>
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <%= index %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.submission_code %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.hak_number %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.on_behalf %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.act_for %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.fullname %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.hak_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= submission.village_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= render "shareds/tables/status", status: submission.kasubsi_tematik_status %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= render "kasubsis/shareds/column_action", action_status: submission.kasubsi_tematik_status, action_data: submission %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shareds/pagination", data: @submissions, name: '' %>

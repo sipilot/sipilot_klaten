@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area: one
+  user: one
+  district: one
+
+two:
+  area: two
+  user: two
+  district: two

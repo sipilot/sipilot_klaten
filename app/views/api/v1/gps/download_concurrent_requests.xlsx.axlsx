@@ -1,0 +1,20 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Permohonan Serentak") do |sheet|
+  sheet.add_row [
+    'No', 'Nomor Hak', 'Nama Pendaftar', 'Bertindak Atas',
+    'Nama Pemilik Sertipikat', 'Jenik Hak', 'Kecamatan', 'Desa', 'Kecamatan'
+  ]
+  @submissions_exports.each.with_index(1) do |submission, index|
+    sheet.add_row [
+      index,
+      submission.hak_number,
+      submission.on_behalf,
+      submission.act_for,
+      submission.fullname,
+      submission.hak_name,
+      submission.sub_district_name
+      submission.village_name,
+      submission.sub_district_name
+    ]
+  end
+end

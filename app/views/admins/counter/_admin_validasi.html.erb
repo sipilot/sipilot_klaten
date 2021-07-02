@@ -1,0 +1,128 @@
+<%= render 'shareds/section_title', title_name: 'Loket Pengambilan Permohonan' %>
+
+<%= render "admins/shareds/column_date_search", action_path: dashboards_admin_permohonan_loket_path, action_data: @search, action_type: 'counter'  %>
+
+<div class="p-4 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between ">
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+    <%= render 'shareds/tables/form_total_entries', action_path: dashboards_admin_permohonan_loket_url %>
+  </div>
+
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+
+    <%=
+      render 'shareds/tables/button_download',
+      xlsx_path: dashboards_admin_permohonan_loket_path(
+        format: :xlsx,
+        method: :get,
+        'per' => @per,
+        'export' => true,
+        'q[created_at_gteq]' => @gteq_params,
+        'q[created_at_lteq]' => @lteq_params,
+        'q[fullname_or_submission_code_cont]' => @search_cont
+      ),
+      pdf_path: dashboards_admin_permohonan_loket_path(
+        format: :pdf,
+        method: :get,
+        'per' => @per,
+        'export' => true,
+        'q[created_at_gteq]' => @gteq_params,
+        'q[created_at_lteq]' => @lteq_params,
+        'q[fullname_or_submission_code_cont]' => @search_cont
+      )
+    %>
+
+  </div>
+</div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex flex-col py-5">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden sm:rounded-lg">
+        <table class="order-column stripe hover">
+          <thead>
+            <tr>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Tgl Permohonan", column: 'created_at' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Kode", column: 'submission_code' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Nomor Hak", column: 'hak_number' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Nama Pendaftar", column: 'on_behalf' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Jenis Hak", column: 'hak_type_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Kecamatan", column: 'sub_district_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Desa", column: 'village_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Status", column: 'submission_status' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+              <% @submissions.each.with_index(@start_from) do |submission, index|%>
+                <tr>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= index %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.date_completion %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.submission_code %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.hak_number %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.on_behalf %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.hak_name %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.sub_district_name %></span>
+                  </td>
+                  <td class="text-center">
+                    <span class="text-sm text-gray-900"><%= submission.village_name %></span>
+                  </td>
+
+                  <td class="text-center">
+                    <%= render "shareds/tables/status", status: submission.submission_status %>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <% if submission.note_admin_validasi.nil? %>
+                      <%= render 'shareds/tables/button_picked', action_path: admin_taken_submission_path(submission), kasubsi_status: submission.kasubsi_tematik_status %>
+                    <% else %>
+                      <p class='bg-green-600 text-white bg-opacity-75 rounded-lg text-xs p-2 m-1'>
+                        <%= submission.note_admin_validasi %>
+                      </p>
+                    <% end %>
+                  </td>
+
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shareds/pagination", data: @submissions, name: '' %>

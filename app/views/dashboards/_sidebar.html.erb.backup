@@ -1,0 +1,133 @@
+<!-- Static sidebar for mobile -->
+<div class="md:hidden hidden" data-target="dashboards.sidebarToggleableOne">
+  <div class="fixed inset-0 flex z-40">
+
+    <div class="fixed inset-0" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+    </div>
+
+    <div class=" relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
+
+      <div class="absolute top-0 right-0 -mr-12 pt-2">
+        <button data-action="click->dashboards#sidebarToggle" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+          <span class="sr-only">Close sidebar</span>
+          <!-- Heroicon name: x -->
+          <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-shrink-0 flex items-center px-4">
+        <%= image_tag('new-logo-sipilot.png', class: "h-8 w-auto", alt: 'sipilot') %>
+        <div class="ml-3">
+          <p class="text-sm font-medium text-white">KANTAH</p>
+          <p class="text-sm font-medium text-white">KAB. KLATEN</p>
+        </div>
+      </div>
+
+      <div class="mt-5 flex-1 h-0 overflow-y-auto">
+
+        <% if ['member sipilot'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_nav" %>
+        <% end %>
+        <% if ['admin validasi', 'admin buku tanah', 'admin pola ruang'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_nav" %>
+        <% end%>
+        <% if ['kasubsi tematik', 'kasubsi pola ruang', 'kasubsi pendaftaran'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/kasubsi_nav" %>
+        <% end%>
+
+        <% if ['admin intip'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_intip" %>
+        <% end%>
+        <% if ['member intip'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_intip_nav" %>
+        <% end%>
+
+        <% if ['admin gps'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_gps_nav" %>
+        <% end%>
+        <% if ['member gps'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_gps_nav" %>
+        <% end%>
+
+        <% if ['super admin'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/super_admin_nav" %>
+        <% end %>
+      </div>
+
+      <div class="flex-shrink-0 flex bg-gray-700 p-4">
+        <a href="#" class="flex-shrink-0 w-full group block">
+          <div class="flex items-center justify-center">
+          <p class="text-xs font-medium text-white">
+            &copy;2020 SIPILOT All rights reserved
+          </p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+    <div class="flex-shrink-0 w-14" aria-hidden="true">
+      <!-- Dummy element to force sidebar to shrink to fit close icon -->
+    </div>
+  </div>
+</div>
+
+<!-- Static sidebar for desktop -->
+<div class="hidden md:flex md:flex-shrink-0" data-target="dashboards.sidebarToggleableTwo">
+  <div class="flex flex-col w-64">
+    <!-- Sidebar component, swap this element with another sidebar if you like -->
+    <div class="flex flex-col h-0 flex-1">
+
+      <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900 justify-center">
+        <%= image_tag('new-logo-sipilot.png', class: "h-8 w-auto", alt: 'sipilot') %>
+        <div class="ml-3">
+          <p class="text-sm font-medium text-white">KANTAH</p>
+          <p class="text-sm font-medium text-white">KAB. KLATEN</p>
+        </div>
+      </div>
+
+      <div class="flex-1 flex flex-col overflow-y-auto">
+        <% if ['member sipilot'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_nav" %>
+        <% end %>
+        <% if ['admin validasi', 'admin buku tanah', 'admin pola ruang'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_nav" %>
+        <% end%>
+        <% if ['kasubsi tematik', 'kasubsi pola ruang', 'kasubsi pendaftaran'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/kasubsi_nav" %>
+        <% end%>
+
+        <% if ['admin intip'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_intip" %>
+        <% end%>
+        <% if ['member intip'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_intip_nav" %>
+        <% end%>
+
+        <% if ['admin gps'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/admin_gps_nav" %>
+        <% end%>
+        <% if ['member gps'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/member_gps_nav" %>
+        <% end%>
+
+        <% if ['super admin'].include? @role %>
+          <%= render "dashboards/sidebar_navigation/super_admin_nav" %>
+        <% end %>
+      </div>
+
+      <div class="flex-shrink-0 flex bg-gray-700 p-4">
+        <a href="#" class="flex-shrink-0 w-full group block">
+          <div class="flex items-center justify-center">
+          <p class="text-xs font-medium text-white">
+            &copy;2020 SIPILOT All rights reserved
+          </p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

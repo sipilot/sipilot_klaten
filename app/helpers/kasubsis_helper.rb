@@ -1,0 +1,2 @@
+module KasubsisHelper
+end

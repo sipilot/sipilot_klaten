@@ -1,0 +1,67 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Semua Permohonan") do |sheet|
+  if @role == 'admin pola ruang'
+    sheet.add_row [
+      'No', 'NIB', 'Kode', 'Nomor Hak', 'Nama Pendaftar', 'Jenis Hak', 'Kecamatan', 'Desa',
+      'Status Pola Ruang', 'Status Kasubsi Pola Ruang'
+    ]
+    @exports.each.with_index(1) do |submission, index|
+      sheet.add_row [
+        index,
+        submission.nib,
+        submission.submission_code,
+        submission.hak_number,
+        submission.on_behalf,
+        submission.hak_name,
+        submission.sub_district_name,
+        submission.village_name,
+        submission.kasubsi_space_pattern_status,
+        submission.space_pattern_status
+      ], types: [
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string
+      ]
+    end
+  end
+  if (@role == 'admin buku tanah' || @role == 'admin validasi')
+    sheet.add_row [
+      'No', 'NIB', 'Kode', 'Nomor Hak', 'Nama Pendaftar', 'Jenis Hak', 'Kecamatan', 'Desa',
+      'Status Surat Ukur', 'Status Buku Tanah', 'Status Kasubsi Tematik', 'Status Kasubsi Pendaftaran'
+    ]
+    @exports.each.with_index(1) do |submission, index|
+      sheet.add_row [
+        index,
+        submission.nib,
+        submission.submission_code,
+        submission.hak_number,
+        submission.on_behalf,
+        submission.hak_name,
+        submission.sub_district_name,
+        submission.village_name,
+        submission.submission_status,
+        submission.land_book_status,
+        submission.kasubsi_tematik_status,
+        submission.kasubsi_registration_status
+      ], types: [
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string,
+        :string
+      ]
+    end
+  end
+end

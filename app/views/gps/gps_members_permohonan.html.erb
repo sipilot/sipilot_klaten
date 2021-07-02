@@ -1,0 +1,105 @@
+<%#= render 'shareds/section_title', title_name: 'Permohonan' %>
+<%#= render 'shareds/tables/filter_n_search_by_date_location', action_data: @search, action_path: gps_admin_gps_members_path %>
+
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+  <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+    <div class="ml-4 mt-2">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Workspace : <%= @workspace.name %>
+        </h3>
+        <h2 class="text-lg leading-6 font-medium text-gray-900 pt-2">
+            Kecamatan : <%= @workspace.sub_district_name %>
+        </h3>
+        <h3 class="text-lg leading-6 font-medium text-gray-900 pt-2">
+            Desa : <%= @workspace.village_name %>
+        </h3>
+    </div>
+    <div class="ml-4 mt-2 flex-shrink-0">
+      <%= render 'shareds/tables/button_back', action_path: gps_admin_gps_members_detail_path(@member) %>
+    </div>
+  </div>
+</div>
+
+<%= render 'gps/table_filter' %>
+<%= render 'gps/table_download' %>
+
+<div class="flex flex-col py-5">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Nama Pendaftar', column: 'on_behalf'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Status Sertipikat', column: 'certificate_status'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Jenis Hak', column: 'hak_type.name'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Nomor Hak', column: 'hak_number'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Jenis Alas Hak', column: 'alas_type.name'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'No Alas Hak', column: 'alas_hak_number'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Kecamatan', column: 'sub_district_name'%>
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "member_gps/column_header", title: 'Desa', column: 'village_name'%>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @gps_plottings.each.with_index(1) do |gps, index| %>
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= index %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.on_behalf %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.certificate_status %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.hak_type_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.hak_number %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.alas_hak_type_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.alas_hak_number %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.sub_district_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= gps.village_name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= render 'shareds/tables/button_detail', action_path: gps_admin_permohonan_detail_path(gps.id) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

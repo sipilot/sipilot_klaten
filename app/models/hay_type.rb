@@ -1,0 +1,3 @@
+class HayType < ApplicationRecord
+end
+

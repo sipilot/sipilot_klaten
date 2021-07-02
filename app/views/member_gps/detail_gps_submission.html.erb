@@ -1,0 +1,274 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg my-4" data-controller='submissionDetail'>
+
+  <div class="bg-white px-4 py-5 sm:px-6">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+      <div class="ml-4 mt-4">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Detail Permohonan Serentak
+        </h3>
+      </div>
+      <div class="ml-4 mt-4 flex-shrink-0">
+        <%= render 'shareds/tables/button_back', action_path: :back %>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200">
+    <dl>
+
+      <% unless (@gps_plotting.fullname.empty? rescue true) %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Nama Pemilik Sertipikat
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.fullname'>
+            <%= @gps_plotting.fullname %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% unless (@gps_plotting.act_for.empty? rescue true) %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Bertindak Atas
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @gps_plotting.act_for %>
+          </dd>
+        </div>
+      <% end %>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Nama Pendaftar
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @gps_plotting.on_behalf %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Status Sertipikat
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @gps_plotting.certificate_status %>
+        </dd>
+      </div>
+
+      <% if @gps_plotting.certificate_status == 'Sudah Sertipikat' %>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Jenis Hak
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.hakName'>
+            <%= @gps_plotting.hak_name %>
+          </dd>
+        </div>
+
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Nomor Hak
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @gps_plotting.hak_number %>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @gps_plotting.certificate_status == 'Belum Sertipikat' %>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Jenis Alas
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <%= @gps_plotting.alas_name %>
+          </dd>
+        </div>
+
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            No Alas Hak
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.hakName'>
+            <%= @gps_plotting.alas_hak_number %>
+          </dd>
+        </div>
+      <% end %>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Alamat Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @gps_plotting.land_address %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Kecamatan
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @gps_plotting.sub_district_name %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Desa
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @gps_plotting.village_name %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Latitude
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.lat'>
+          <%= @gps_plotting.lattitude %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Longitude
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.lng'>
+          <%= @gps_plotting.longitude %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Maps
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+            <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+              <div style="height: 400px;width: 100%;" data-target="submissionDetail.map"></div>
+            </div>
+          </div>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          KTP
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+            <% if @gps_plotting.image_id_number.nil?  %>
+                            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+            <% else %>
+              <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                <%= image_tag (@gps_plotting.image_id_number) %>
+              </div>
+            <% end %>
+          </div>
+        </dd>
+      </div>
+
+      <% if @gps_plotting.act_for == 'Kuasa' %>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Surat Kuasa
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+              <% if @gps_plotting.image_authority_letter.nil?  %>
+                              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+              <% else %>
+                <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (@gps_plotting.image_authority_letter) %>
+                </div>
+              <% end %>
+            </div>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @gps_plotting.certificate_status == 'Belum Sertipikat' %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Alas Hak (Girik, Pipil, Patok, Letter C, Ground Kart, SPPT, SKT, dll)
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+              <% if @gps_plotting.image_alas_hak.nil?  %>
+                              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+              <% else %>
+                <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (@gps_plotting.image_alas_hak) %>
+                </div>
+              <% end %>
+            </div>
+          </dd>
+        </div>
+
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Sket Bidang Tanah
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+              <% if @gps_plotting.image_ground_sketch.nil?  %>
+                              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+              <% else %>
+                <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (@gps_plotting.image_ground_sketch) %>
+                </div>
+              <% end %>
+            </div>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @gps_plotting.certificate_status == 'Sudah Sertipikat' %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Surat Ukur
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <% if @gps_plotting.image_measuring_letter.nil? || @gps_plotting.image_measuring_letter.empty?  %>
+                            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+            <% else %>
+              <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+              <% @gps_plotting.image_measuring_letter.each do |measuring_letter| %>
+                <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <a href="<%= url_for(measuring_letter.image) %>" target='blank'>
+                    Lihat Dokumen
+                  </a>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Buku Tanah
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <% if @gps_plotting.image_land_book.nil? || @gps_plotting.image_land_book.empty? %>
+                            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Gambar tidak ditemukan</p>
+            <% else %>
+              <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+              <% @gps_plotting.image_land_book.each do |land_book| %>
+                <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <a href="<%= url_for(land_book.image) %>" target='blank'>
+                    Lihat Dokumen
+                  </a>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+</div>

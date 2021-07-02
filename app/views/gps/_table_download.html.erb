@@ -1,0 +1,13 @@
+<div class="p-4 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between ">
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+  </div>
+
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+    <%=
+      render 'shareds/tables/button_download',
+      shp_path: gps_admin_gps_members_permohonan_path('q[created_at_gteq]' => @gteq_params, 'q[created_at_lteq]' => @lteq_params, 'archive' => true),
+      xlsx_path: gps_admin_gps_members_permohonan_path('q[created_at_gteq]' => @gteq_params, 'q[created_at_lteq]' => @lteq_params, format: :xlsx),
+      pdf_path: gps_admin_gps_members_permohonan_path('q[created_at_gteq]' => @gteq_params, 'q[created_at_lteq]' => @lteq_params, format: :pdf)
+    %>
+  </div>
+</div>

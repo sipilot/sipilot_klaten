@@ -1,0 +1,128 @@
+<%= render 'shareds/table_title', name: 'Buat Workspaces' %>
+
+<div class="my-5 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6" data-controller="createWorkspace">
+  <%= form_with(url: intips_workspaces_path, method: 'post') do %>
+    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+      <div class="space-y-6 sm:space-y-5">
+        <div class="space-y-6 sm:space-y-5">
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
+            <label for="name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              Nama
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input
+                value=""
+                type="text"
+                name="name"
+                id="name"
+                autocomplete="name"
+                class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                required>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Kabupaten
+                <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <%= select_tag "district",
+                options_from_collection_for_select(@districts, "id", "name"),
+                required: true,
+                include_blank: true,
+                class: "max-w-lg block focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md",
+                data: { action: 'change->createWorkspace#setSubDistrictData', target: 'createWorkspace.district' }
+                %>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Kecamatan
+                <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <select
+                id="sub_district"
+                name="sub_district"
+                data-action="change->createWorkspace#setVillageData"
+                data-target='createWorkspace.subDistrict'
+                class="max-w-lg block focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                required
+                >
+                <option value="">Kecamatan</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Desa
+                <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <select
+                id="village"
+                name="village"
+                data-target='createWorkspace.villages'
+                class="max-w-lg block focus:ring-blue-500 focus:border-blue-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                required
+                >
+                <option value="">Desa</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="rt" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              RT
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input value="" type="number" name="rt" id="rt" min=0 max=10000 maxlength=5 autocomplete="rt" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="rw" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              RW
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input value="" type="number" name="rw" id="rw" min=0 max=10000 maxlength=5 autocomplete="rw" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="date_from" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              Dari Tanggal
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input value="" type="date" name="date_from" id="date_from" autocomplete="date_from" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
+            </div>
+          </div>
+
+          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <label for="date_to" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              Sampai Tanggal
+              <span class="mt-2 text-sm text-red-500">*</span>
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <input value="" type="date" name="date_to" id="date_to" autocomplete="date_to" class="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" required>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-5">
+      <div class="flex justify-end">
+        <%= submit_tag 'Buat Workspace', class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+    </div>
+  <% end %>
+</div>

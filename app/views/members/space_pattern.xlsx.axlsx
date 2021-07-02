@@ -1,0 +1,24 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "REKAPITULASI BERKAS POLA RUANG") do |sheet|
+  sheet.add_row [
+    'No', 'Kode', 'NIB', 'Nomor Hak', 'Nama Pendaftar', 'Bertindak Atas',
+    'Nama Pemilik Sertipikat', 'Jenik Hak', 'Kecamatan', 'Desa', 'Status Pola Ruang', 
+    'Status Kasubsi Pola Ruang'
+  ]
+  @submissions_exports.each.with_index(1) do |submission, index|
+    sheet.add_row [
+      index,
+      submission.submission_code,
+      submission.nib,
+      submission.hak_number,
+      submission.on_behalf,
+      submission.act_for,
+      submission.fullname,
+      submission.hak_name,
+      submission.sub_district_name,
+      submission.village_name,
+      submission.space_pattern_status,
+      submission.kasubsi_space_pattern_status
+    ]
+  end
+end

@@ -1,0 +1,143 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6 flex justify-between items-center flex-wrap sm:flex-nowrap">
+    <div class=" mt-4 flex-shrink-0">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Import Rekapitulasi GPS per Desa
+      </h3>
+    </div>
+    <div class="mt-4 flex-shrink-0">
+      <%= render 'shareds/tables/button_back', action_path: gps_member_workspaces_show_path(@workspace) %>
+    </div>
+  </div>
+  <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">
+          Workspace
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= @workspace.name %>
+        </dd>
+      </div>
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">
+          Kecamatan
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= @workspace.sub_district_name %>
+        </dd>
+      </div>
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">
+          Desa
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= @workspace.village_name %>
+        </dd>
+      </div>
+
+      <div class="sm:col-span-3">
+        <dt class="text-sm font-medium text-gray-500">
+          Keterangan
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          Hanya menerima file dengan format <b>CSV</b> dan <b>Excel</b> untuk dilakukkan import data. </br>
+          Dengan format kolom sebagai berikut :</br>
+          <!-- This example requires Tailwind CSS v2.0+ -->
+          <div class="flex flex-col pt-5">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nomor Hak
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nama Pendaftar
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nama Lengkap (Sesuai Sertipikat)
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Bertindak Atas
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Jenis Hak
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Lattitude
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Longitude
+                        </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Odd row -->
+                      <tr class="bg-white">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            123
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            Budi
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            Budi
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            Diri Sendiri
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            Hak Milik (HM)
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            -7.695160224671814
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            110.60864661084307
+                        </td>
+                      </tr>
+                      </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <ul class="p-2">
+            <li>* <b>Nomor Hak</b> - number : <i>123</i></li>
+            <li>* <b>Nama Pendaftar</b> - string : <i>Namaku</i></li>
+            <li>* <b>Nama Lengkap (Sesuai Sertipikat) </b> - string : <i>NamaKu</i></li>
+            <li>* <b>Bertindak Atas</b> - opsi : <i>Diri Sendiri</i> | <i>Kuasa</i></li>
+            <li>* <b>Jenis Hak</b> - opsi : <i>Hak Milik (HM)</i> | <i>Hak Guna Bangunan (HGB)</i> | <i>Hak Pakai (HP)</i> | <i>Hak Guna Usaha (HGU)</i> | <i>Hak Pengelolaan (HP)</i></li>
+            <li>* <b>Lattitude </b> - string : <i>-7.695160224671814</i></li>
+            <li>* <b>Longitude </b> - string : <i>110.60864661084307</i></li>
+          </ul>
+
+          <%= link_to 'Download Format',
+            gps_member_workspaces_format_import_submission_path(format: :xlsx),
+            class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500",
+            method: :get
+          %>
+
+        </dd>
+      </div>
+      <div class="sm:col-span-2">
+        <dt class="text-sm font-medium text-gray-500">
+          Import GPS
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900">
+          <%= form_tag gps_member_workspaces_process_import_submission_path, multipart: true do %>
+            <%= file_field_tag :file, required: true %>
+            <%= submit_tag 'Submit',
+              class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            %>
+          <% end %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>

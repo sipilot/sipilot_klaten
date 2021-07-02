@@ -1,0 +1,2 @@
+module IntipsHelper
+end

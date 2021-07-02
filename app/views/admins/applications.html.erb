@@ -1,0 +1,12 @@
+<% if current_user.admin_buku_tanah? %>
+  <%= render "admins/applications/admin_buku_tanah" %>
+<% end %>
+
+<% if current_user.admin_validasi? %>
+  <%= render "admins/applications/admin_validasi" %>
+<% end %>
+
+<% if current_user.admin_pola_ruang? %>
+  <%= render "admins/applications/admin_pola_ruang" %>
+<% end %>
+

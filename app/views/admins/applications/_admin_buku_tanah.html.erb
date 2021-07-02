@@ -1,0 +1,182 @@
+<%= render 'shareds/section_title', title_name: 'Permohonan Pelayanan Buku Tanah' %>
+
+<%= render "admins/shareds/column_date_search", action_path: dashboards_admin_permohonan_path, action_data: @search %>
+
+<div class="p-4 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between ">
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+      <%= render 'shareds/tables/form_total_entries', action_path: dashboards_admin_permohonan_url %>
+  </div>
+
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+
+    <%=
+      render 'shareds/tables/button_download',
+      xlsx_path: dashboards_admin_permohonan_path(
+        format: :xlsx,
+        method: :get,        
+        'per' => @per,
+        'export' => true,
+        'q[created_at_gteq]' => @gteq_params,
+        'q[created_at_lteq]' => @lteq_params,
+        'q[fullname_or_submission_code_cont]' => @search_cont
+      ),
+      pdf_path: dashboards_admin_permohonan_path(
+        format: :pdf,
+        method: :get,
+        'per' => @per,
+        'export' => true,
+        'q[created_at_gteq]' => @gteq_params,
+        'q[created_at_lteq]' => @lteq_params,
+        'q[fullname_or_submission_code_cont]' => @search_cont
+      ),
+      shp_path: dashboards_admin_permohonan_path(
+        'per' => @per,
+         method: :get,
+        'export' => true,
+        'archive' => true,
+        'q[created_at_gteq]' => @gteq_params,
+        'q[created_at_lteq]' => @lteq_params,
+        'q[fullname_or_submission_code_cont]' => @search_cont
+      )
+    %>
+
+  </div>
+</div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex flex-col py-5">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden sm:rounded-lg">
+        <table class="order-column stripe hover" data-controller="selectAllCheckbox">
+          <thead>
+            <tr>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <input
+                  type="checkbox"
+                  data-action="click->selectAllCheckbox#set_checkbox"
+                  <%= session[:is_check_all] ? 'checked' : '' %>
+                >
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                NIB
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Tgl Permohonan", column: 'created_at' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Kode", column: 'submission_code' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Nomor Hak", column: 'hak_number' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Nama Pendaftar", column: 'on_behalf' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Bertindak Atas", column: 'act_for' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Nama Pemilik Sertipikat", column: 'fullname' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Jenis Hak", column: 'hak_type_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Desa", column: 'village_name' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                <%= render "admins/shareds/column_header", title: "Status Buku Tanah", column: 'land_book_status' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200" data-target="selectAllCheckbox.allCheckbox">
+            <% @submissions.each.with_index(@start_from) do |submission, index|%>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= check_box_tag "submission_ids[]",
+                    submission.id,
+                    (session['submission_ids'].include?(submission.id.to_s) rescue false),
+                    data: {
+                      controller: 'tableData',
+                      action: 'change->tableData#setSessionValue',
+                      target: 'tableData.item'
+                    }
+                  %>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= index %></span>
+                </td>
+                <td class="text-center">
+                  <div>
+                    <input
+                      data-reflex="keyup->AdminSubmission#set_nib"
+                      type="text"
+                      maxlength="5"
+                      value="<%= submission.nib %>"
+                      data-value="<%= submission.nib %>"
+                      data-submission_id="<%= submission.id.to_s %>"
+                      data-nib="<%= submission.nib %>"
+                      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      placeholder="NIB"
+                      >
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.date %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.submission_code %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.hak_number %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.on_behalf %> </span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.act_for %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.fullname %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.hak_name %></span>
+                </td>
+                <td class="text-center">
+                  <span class="text-sm text-gray-900"><%= submission.village_name %></span>
+                </td>
+                <td class="text-center">
+                  <%= render "shareds/tables/status", status: submission.land_book_status %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <% if submission.land_book_status == 'selesai' %>
+                    <%= render 'shareds/tables/button_detail', action_path: admin_detail_submission_path(submission) %>
+                  <% else %>
+                    <%= render 'shareds/tables/button_detail', action_path: admin_detail_submission_path(submission) %>
+                    <%#= render 'shareds/tables/button_approved', action_path: admin_accept_submission_path(submission) %>
+                    <%#= render 'shareds/tables/button_delete', action_path: admin_delete_submission_path(submission) %>
+                    <%= render 'shareds/tables/button_revision', action_path: admin_member_revision_path(submission) %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <div class="p-5">
+          <%= render 'shareds/tables/button_approved', action_path: dashboards_admin_permohonan_session_approve_path %>
+          <%= render 'shareds/tables/button_delete', action_path: dashboards_admin_permohonan_session_delete_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shareds/pagination", data: @submissions, name: '' %>

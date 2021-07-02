@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  village: one
+  sub_district: one
+  district: one
+  user: one
+  name: MyString
+  rt: MyString
+  rw: MyString
+  date_from: 2020-12-15 05:45:18
+  date_to: 2020-12-15 05:45:18
+
+two:
+  village: two
+  sub_district: two
+  district: two
+  user: two
+  name: MyString
+  rt: MyString
+  rw: MyString
+  date_from: 2020-12-15 05:45:18
+  date_to: 2020-12-15 05:45:18

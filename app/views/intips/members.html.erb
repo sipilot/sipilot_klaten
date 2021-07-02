@@ -1,0 +1,65 @@
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+        <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+          <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+
+            <div class="ml-4 mt-4">
+              <%= render "intips/search_form" %>
+            </div>
+
+
+            <div class="ml-4 mt-4 flex-shrink-0">
+              <%= link_to intip_admin_members_new_path, class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" do %>
+                Tambah
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "intips/column_header", title: "Nama", column: 'user_detail_fullname' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <%= render "intips/column_header", title: "Email", column: 'email' %>
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.each do |member| %>
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <%= member.fullname %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= member.email %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= render 'shareds/tables/button_detail', action_path: intip_admin_members_detail_path(member) %>
+                  <%= link_to 'Edit', intip_admin_members_edit_url(member), class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+                  <%= link_to 'Delete', intip_admin_members_delete_url(member), method: 'delete', :data => {:confirm => 'Apakah anda yakin ingin menghapus user ini?'}, class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+                </td>
+              </tr>
+            <% end %>
+
+            <!-- More rows... -->
+          </tbody>
+        </table>
+        <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+<%= paginate @members %>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>

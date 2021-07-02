@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Permohonan Hari Ini") do |sheet|
+  sheet.add_row [
+    'No', 'Tipe', 'Total', 'Selesai', 'Proses', 'Revisi'
+  ]
+  @data.each.with_index(1) do |data, index|
+    sheet.add_row [
+      index,
+      data[:type],
+      data[:total],
+      data[:done],
+      data[:process],
+      data[:revisions]
+    ]
+  end
+end

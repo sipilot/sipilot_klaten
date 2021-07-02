@@ -1,0 +1,27 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Berkas Selesai") do |sheet|
+  sheet.add_row [
+      'No',
+      'Nama Pendaftar',
+      'Status Sertipikat',
+      'Jenis Hak',
+      'Nomor Hak',
+      'Jenis Alas Hak',
+      'No Alas Hak',
+      'Kecamatan',
+      'Desa'
+  ]
+  @gps_plottings.each.with_index(1) do |submission, index|
+    sheet.add_row [
+      index,
+      submission.on_behalf,
+      submission.certificate_status,
+      submission.hak_type_name,
+      submission.hak_number,
+      submission.alas_hak_type_name,
+      submission.alas_hak_number,
+      submission.sub_district_name,
+      submission.village_name
+    ]
+  end
+end

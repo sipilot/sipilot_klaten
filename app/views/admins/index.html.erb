@@ -1,0 +1,11 @@
+<% if current_user.admin_validasi? %>
+  <%= render "admins/home/admin_validasi" %>
+<% end %>
+
+<% if current_user.admin_buku_tanah? %>
+  <%= render "admins/home/admin_buku_tanah" %>
+<% end %>
+
+<% if current_user.admin_pola_ruang? %>
+  <%= render "admins/home/admin_pola_ruang" %>
+<% end %>

@@ -1,0 +1,261 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg my-4" data-controller='submissionDetail'>
+
+  <div class="bg-white px-4 py-5 sm:px-6">
+    <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+      <div class="ml-4 mt-4">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Detail Intip
+        </h3>
+      </div>
+      <div class="ml-4 mt-4 flex-shrink-0">
+        <%= link_to 'Kembali', :back, class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Nomor Hak
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.hak_number %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Nama Instansi Pemerintah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.fullname'>
+          <%= @intip.name %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Nui
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.nui %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Nib
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.nib %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Tanggal
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= Formatter.date_dmy(@intip.date) %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Penguasaan Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_control %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Peruntukan Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_allocation %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Penggunaan Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_use %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Pemanfaatan Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_utilization %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Luas Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_size %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Jenis Alas
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.alas_name %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Status Sertipikat
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.certificate_status %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Jenis Hak
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.hakName'>
+          <%= @intip.hak_name %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Alamat Tanah
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.land_address %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Desa
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @intip.village_name %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Latitude
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.lat'>
+          <%= @intip.lattitude %>
+        </dd>
+      </div>
+
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Longitude
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2" data-target='submissionDetail.lng'>
+          <%= @intip.longitude %>
+        </dd>
+      </div>
+
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Maps
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+            <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+              <div style="height: 400px;width: 100%;" data-target="submissionDetail.map"></div>
+            </div>
+          </div>
+        </dd>
+      </div>
+
+      <% if @intip.certificate_status == 'Belum Sertipikat' %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Alas Hak (Girik, Pipil, Patok, Letter C, Ground Kart, SPPT, SKT, dll)
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+              <% if @intip.image_alas_hak.nil?  %>
+                Gambar tidak ditemukan
+              <% else %>
+                <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (@intip.image_alas_hak) %>
+                </div>
+              <% end %>
+            </div>
+          </dd>
+        </div>
+
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Sket Bidang Tanah
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+              <% if @intip.image_ground_sketch.nil?  %>
+                Gambar tidak ditemukan
+              <% else %>
+                <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (@intip.image_ground_sketch) %>
+                </div>
+              <% end %>
+            </div>
+          </dd>
+        </div>
+      <% end %>
+
+      <% if @intip.certificate_status == 'Sudah Sertipikat' %>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Surat Ukur
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <% if @intip.image_measuring_letter.nil? || @intip.image_measuring_letter.empty?  %>
+              Gambar tidak ditemukan
+            <% else %>
+              <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+              <% @intip.image_measuring_letter.each do |measuring_letter| %>
+                <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (measuring_letter.image) %>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+          </dd>
+        </div>
+
+        <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Buku Tanah
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <% if @intip.image_land_book.nil? || @intip.image_land_book.empty? %>
+              Gambar tidak ditemukan
+            <% else %>
+              <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+              <% @intip.image_land_book.each do |land_book| %>
+                <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+                  <%= image_tag (land_book.image) %>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+</div>

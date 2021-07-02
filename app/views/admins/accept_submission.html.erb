@@ -1,0 +1,20 @@
+<% if params['success'] %>
+  <%= render 'shareds/popup_accept',
+    links: params['links'],
+    message: params['message'],
+    submission_code: params['code']
+  %>
+<% end %>
+
+<% if current_user.admin_buku_tanah? %>
+  <%= render "admins/accepts/admin_buku_tanah" %>
+<% end %>
+
+<% if current_user.admin_validasi? %>
+  <%= render "admins/accepts/admin_validasi" %>
+<% end %>
+
+<% if current_user.admin_pola_ruang? %>
+  <%= render "admins/accepts/admin_pola_ruang" %>
+<% end %>
+

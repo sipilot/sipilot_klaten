@@ -1,0 +1,124 @@
+<%= render "shareds/section_title", title_name: "Detail Workspace : #{@workspace.name}" %>
+<%= render 'member_gps/table_filter' %>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+  <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+    <div class="ml-4 mt-2">
+      <%= render 'shareds/tables/button_import', action_path: gps_member_workspaces_import_submission_path %>
+    <div>
+    </div>
+
+    </div>
+    <div class="ml-4 mt-2 flex-shrink-0">
+      <%= link_to 'Ajukan Gerakan Plotting Serentak',
+        gps_member_workspaces_new_submission_path,
+        class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+        method: :get
+      %>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 py-1">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+        <%= form_tag gps_member_workspaces_process_data_path, method: :post do %>
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  No
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Nama Pendaftar', column: 'on_behalf'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Status Sertipikat', column: 'certificate_status'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Jenis Hak', column: 'hak_type.name'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Nomor Hak', column: 'hak_number'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Jenis Alas Hak', column: 'alas_type.name'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'No Alas Hak', column: 'alas_hak_number'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Kecamatan', column: 'sub_district_name'%>
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <%= render "member_gps/column_header", title: 'Desa', column: 'village_name'%>
+                </th>
+                <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Aksi
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @results.each.with_index(1) do |gps, index|%>
+                <tr class="bg-white">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= check_box_tag "submission_ids[]", gps.id %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= index %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.on_behalf %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.certificate_status %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.hak_type_name %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.hak_number %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.alas_hak_type_name %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.alas_hak_number %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.sub_district_name %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= gps.village_name %>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <%= render 'shareds/tables/button_edit', action_path: gps_member_workspaces_update_submission_path({ submission_id: gps.id }) %>
+                    <%= render 'shareds/tables/button_detail', action_path: gps_member_workspaces_detail_submission_path({ submission_id: gps.id }) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <% if @results.any? %>
+            <div class="p-5">
+              <%= submit_tag "Kirim", name: 'button',class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+              <%= submit_tag "Hapus", name: 'button', class: "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'shareds/pagination', data: @results, name: 'data' %>

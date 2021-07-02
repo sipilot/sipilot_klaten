@@ -1,0 +1,47 @@
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Edit Member</h3>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_for(@member, url: superadmin_member_edit_process_path, method: :post) do |f| %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :fullname, 'Nama Lengkap', class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :fullname, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @member.fullname %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :username, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :username, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @member.username %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :email, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.email_field :email, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @member.email %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :password, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.password_field :password, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :phone_number, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.number_field :phone_number, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @member.phone_number %>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <%= f.hidden_field :id, value: @member.id%>
+            <%= f.submit "Update Member", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

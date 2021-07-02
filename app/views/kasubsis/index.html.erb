@@ -1,0 +1,11 @@
+<% if current_user.kasubsi_tematik? %>
+  <%= render "kasubsis/home/kasubsi_tematik" %>
+<% end %>
+
+<% if current_user.kasubsi_pola_ruang? %>
+  <%= render "kasubsis/home/kasubsi_pola_ruang" %>
+<% end %>
+
+<% if current_user.kasubsi_pendaftaran? %>
+  <%= render "kasubsis/home/kasubsi_pendaftaran" %>
+<% end %>

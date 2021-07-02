@@ -1,0 +1,11 @@
+<div class="my-5 bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+  <div class="px-4 py-5 sm:p-6">
+      <figure >
+        <% if @submission_recaps.nil? %>
+          <%= column_chart [], messages: {empty: "Data rekap permohonan belum tersedia."}, title: "Data Rekap Permohonan" %>
+        <% else %>
+          <%= column_chart @submission_recaps.group(:submission_status).group_by_month(:created_at, format: "%B").count, messages: {empty: "Data rekap permohonan belum tersedia."}, title: "Data Rekap Permohonan" %>
+        <% end %>
+      </figure>
+  </div>
+</div>

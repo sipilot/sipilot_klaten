@@ -1,0 +1,64 @@
+<%= search_form_for(action_data, url: action_path, method: 'get') do |f| %>
+  <div class="py-3 px-4 flex flex-wrap overflow-hidden bg-white border-b border-gray-200 ">
+    <div class="my-2 px-2 w-full overflow-hidden sm:w-1/5 md:w-full lg:w-1/2 xl:w-1/2">
+      <div>
+
+        <% if (action_type == 'counter' rescue false) %>
+          <%= f.label :date_of_completion_gteq , "Date From", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <%= f.date_field :date_of_completion_gteq, value: @doc_gteq_params, class: "block w-full pr-10 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md" %>
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-blue-500"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+        <% else %>
+          <%= f.label :created_at_gteq , "Date From", class: "block text-sm font-medium text-gray-700" %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <%= f.date_field :created_at_gteq, value: @gteq_params, class: "block w-full pr-10 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md" %>
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-blue-500"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="my-2 px-2 w-full overflow-hidden sm:w-1/5 md:w-full lg:w-1/2 xl:w-1/2">
+      <div>
+          <% if (action_type == 'counter' rescue false) %>
+            <%= f.label :date_of_completion_lteq , "Date To", class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <%= f.date_field :date_of_completion_lteq, value: @doc_lteq_params, class: "block w-full pr-10 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md" %>
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-blue-500"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
+          <% else %>
+            <%= f.label :created_at_lteq , "Date To", class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <%= f.date_field :created_at_lteq, value: @lteq_params, class: "block w-full pr-10 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md" %>
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-blue-500"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="my-2 px-2 w-full overflow-hidden sm:w-1/5 md:w-full lg:w-1/2 xl:w-1/2">
+      <div class="mt-1">
+        <%= f.submit "Search", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

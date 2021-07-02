@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  type: 1
+  submission: one
+  file_upload: one
+
+two:
+  description: MyText
+  type: 1
+  submission: two
+  file_upload: two

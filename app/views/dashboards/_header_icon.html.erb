@@ -1,0 +1,20 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<a href="#" class="flex-shrink-0 group block">
+<div class="flex items-center">
+    <div>
+    <span class="inline-flex items-center justify-center h-8 w-8 rounded-full bg-gray-500">
+    <span class="text-sm font-medium leading-none text-white"><%= current_user.username[0].upcase rescue 'S' %></span>
+    </span>
+    </div>
+    <div class="ml-3">
+      <%= link_to dashboards_profile_path do %>
+        <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+            <%= current_user.username rescue '' %>
+        </p>
+        <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+            <%= current_user.email rescue '' %>
+        </p>
+      <% end %>
+    </div>
+</div>
+</a>

@@ -1,0 +1,163 @@
+
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      # confirmed: "Your email address has been successfully confirmed."
+      confirmed: "Email anda berhasil dikonfirmasi."
+      # send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_instructions: "Anda akan menerima instruksi untuk melakukkan konfirmasi email dalam beberapa saat."
+      # send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "Jika email Anda terdaftar di database kami, Anda akan menerima email instruksi untuk konfirmasi email dalam beberapa saat"
+    failure:
+      # already_authenticated: "You are already signed in."
+      already_authenticated: ""
+      # inactive: "Your account is not activated yet."
+      inactive: "Akun Anda belum diaktifkan sekarang."
+      # invalid: "Invalid %{authentication_keys} or password."
+      invalid: "Kesalahan %{authentication_keys} atau password."
+      # locked: "Your account is locked."
+      locked: "Akun Anda terkunci."
+      # last_attempt: "You have one more attempt before your account is locked."
+      last_attempt: "You have one more attempt before your account is locked."
+      # not_found_in_database: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "Kesalahan %{authentication_keys} atau password."
+      # timeout: "Your session expired. Please sign in again to continue."
+      timeout: "Session kadaluarsa, tolong sign in kembali untuk melanjutkan."
+      # unauthenticated: "You need to sign in or sign up before continuing."
+      unauthenticated: "Anda harus sign in atau mendaftar sebelum melanjutkan."
+      # unconfirmed: "You have to confirm your email address before continuing."
+      unconfirmed: "Anda harus melakukkan konfirmasi email sebelum melanjutkan."
+    mailer:
+      confirmation_instructions:
+        # subject: "Confirmation instructions"
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        # subject: "Reset password instructions"
+        subject: "Instruksi Reset Password"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      email_changed:
+        subject: "Perubahan Email"
+      password_change:
+        subject: "Perubahan Password"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "Anda tidak dapat mengakses halaman ini tanpa datang dari password reset email. Jika anda datang dari password reset email, pastikan bahwa anda menggunakan URL yang benar"
+      send_instructions: "Anda akan menerima email terkait instruksi bagaimana cara melakukkan reset password dalam beberapa saat."
+      send_paranoid_instructions: "Jika email Anda terdaftar di database kami, anda akan menerima password recovery link pada email Anda dalam beberapa saat."
+      updated: "Password Anda sudah berhasil dirubah, Anda sekarang berhasil sign in."
+      updated_not_active: "Password Anda berhasil dirubah."
+      # no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      # send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      # send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      # updated: "Your password has been changed successfully. You are now signed in."
+      # updated_not_active: "Your password has been changed successfully."
+    registrations:
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      signed_up: "Hallo Selamat Datang! Anda telah berhasil sign up."
+      signed_up_but_inactive: "Anda berhasil sign up, namun Anda berlum berhasil sign in, karena akun Anda belum di aktifasi."
+      signed_up_but_locked: "Anda berhasil sign up, namun Anda belum berhasil sign in, karena akun Anda terkunci."
+      signed_up_but_unconfirmed: "Pesan beserta link konfirmasi telah dikirim ke email Anda. Segera ikuti link tersebut untuk meng-aktifkan akun Anda,"
+      update_needs_confirmation: "Berhasil update akun, namun dibutuhkan untuk verifikasi email baru. Mohon cek email dan ikuti link konfirmasi untuk meng-konfirmasi email baru anda."
+      updated: "Akun Anda berhasil ter-update."
+      # signed_up: "Welcome! You have signed up successfully."
+      # signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      # signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      # signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      # update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
+      # updated: "Your account has been updated successfully."
+      # updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      updated_but_not_signed_in: "Akun anda berhasil di update, harap melakukkan sign in."
+    sessions:
+      signed_in: ""
+      signed_out: ""
+      already_signed_out: ""
+      # signed_in: "Signed in successfully."
+      # signed_out: "Signed out successfully."
+      # already_signed_out: "Signed out successfully."
+    unlocks:
+      send_instructions: "Anda akan menerima email instruksi terkait unlock akun dalam beberapa saat."
+      send_paranoid_instructions: "Jika akun Anda terdaftar, Anda akan menerima email terkait instruksi bagaimana cara unlock dalam beberapa saat"
+      unlocked: "Akun Anda berhasil unlock, harap segera melakukkan sign in"
+      # send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      # send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      # unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+
+
+# en:
+#   devise:
+#     confirmations:
+#       confirmed: "Your email address has been successfully confirmed."
+#       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+#       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+#     failure:
+#       already_authenticated: "You are already signed in."
+#       inactive: "Your account is not activated yet."
+#       invalid: "Invalid %{authentication_keys} or password."
+#       locked: "Your account is locked."
+#       last_attempt: "You have one more attempt before your account is locked."
+#       not_found_in_database: "Invalid %{authentication_keys} or password."
+#       timeout: "Your session expired. Please sign in again to continue."
+#       unauthenticated: "You need to sign in or sign up before continuing."
+#       unconfirmed: "You have to confirm your email address before continuing."
+#     mailer:
+#       confirmation_instructions:
+#         subject: "Confirmation instructions"
+#       reset_password_instructions:
+#         subject: "Reset password instructions"
+#       unlock_instructions:
+#         subject: "Unlock instructions"
+#       email_changed:
+#         subject: "Email Changed"
+#       password_change:
+#         subject: "Password Changed"
+#     omniauth_callbacks:
+#       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+#       success: "Successfully authenticated from %{kind} account."
+#     passwords:
+#       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+#       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+#       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+#       updated: "Your password has been changed successfully. You are now signed in."
+#       updated_not_active: "Your password has been changed successfully."
+#     registrations:
+#       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+#       signed_up: "Welcome! You have signed up successfully."
+#       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+#       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+#       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+#       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
+#       updated: "Your account has been updated successfully."
+#       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+#     sessions:
+#       signed_in: "Signed in successfully."
+#       signed_out: "Signed out successfully."
+#       already_signed_out: "Signed out successfully."
+#     unlocks:
+#       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+#       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+#       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+#   errors:
+#     messages:
+#       already_confirmed: "was already confirmed, please try signing in"
+#       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+#       expired: "has expired, please request a new one"
+#       not_found: "not found"
+#       not_locked: "was not locked"
+#       not_saved:
+#         one: "1 error prohibited this %{resource} from being saved:"
+#         other: "%{count} errors prohibited this %{resource} from being saved:"

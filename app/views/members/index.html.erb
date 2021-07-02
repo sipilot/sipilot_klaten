@@ -1,0 +1,59 @@
+<div>
+  <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2">
+
+    <div class="animate__animated animate__fadeInLeft bg-white overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+            <!-- Heroicon name: users -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z" />
+            </svg>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">
+              Layanan Validasi
+            </dt>
+            <dd class="flex items-baseline">
+              <div class="text-2xl font-semibold text-gray-900">
+                <%= @total_validation_services %>
+              </div>
+            </dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="animate__animated animate__fadeInRight bg-white overflow-hidden shadow rounded-lg">
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+            <!-- Heroicon name: cursor-click -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            </svg>
+          </div>
+          <div class="ml-5 w-0 flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">
+              Layanan Cek Pola Ruang
+            </dt>
+            <dd class="flex items-baseline">
+              <div class="text-2xl font-semibold text-gray-900">
+                <%= @total_space_pattern_service %>
+              </div>
+            </dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dl>
+</div>
+
+<%# MEMBER CHARTS %>
+<div class="my-5 bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+  <div class="px-4 py-5 sm:p-6">
+      <figure >
+        <%= column_chart @submission_recaps.group(:submission_status).group_by_month(:created_at, format: "%B").count, messages: {empty: "Data rekap permohonan belum tersedia."}, title: "Data Rekap Permohonan" %>
+      </figure>
+  </div>
+</div>

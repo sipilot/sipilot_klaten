@@ -1,0 +1,127 @@
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+        <p class="mt-1 text-sm text-gray-600">
+          Your detail account information
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_for(@user, url: dashboards_profile_update_path, method: :post) do |f| %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :fullname, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :fullname, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.fullname %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :username, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :username, disabled: true, class: "mt-1 focus:ring-blue-500 text-gray-400 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.username %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :email, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.email_field :email, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.email %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :id_number, 'KTP', class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :id_number, maxlength: 16 ,class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.id_number %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :phone_number, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.number_field :phone_number, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.phone_number %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :address, class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_area :address, class: "mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md", value: @user.address %>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <%= f.submit "Update Profile", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Credentials</h3>
+        <p class="mt-1 text-sm text-gray-600">
+          The password you use to access your account
+        </p>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_tag dashboards_password_update_path do %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
+              <div class="col-span-6 sm:col-span-4" data-controller="btnPassword">
+                <%= label_tag 'current_password', nil, class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <%= password_field_tag 'pass[current_password]',nil , data: { target: "btnPassword.hideable" }, min: 6, required: true, class: 'appearance-none block w-full px-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm' %>
+                  <div data-action="click->btnPassword#hide" class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4" data-controller="btnPassword">
+                <%= label_tag 'new_password', nil, class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <%= password_field_tag 'pass[new_password]', nil, data: { target: "btnPassword.hideable" }, min: 6, required: true, class: 'appearance-none block w-full px-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm' %>
+                  <div data-action="click->btnPassword#hide" class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
+                  <p class="mt-2 text-sm text-gray-500" id="email-description">Minimal 6 character.</p>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4" data-controller="btnPassword">
+                <%= label_tag 'confirmation_password', nil, class: "block text-sm font-medium text-gray-700" %>
+                <div class="mt-1 flex rounded-md shadow-sm">
+                  <%= password_field_tag 'pass[confirmation_password]', nil, data: { target: "btnPassword.hideable" }, class: 'appearance-none block w-full px-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm' %>
+                  <div data-action="click->btnPassword#hide" class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
+                  <p class="mt-2 text-sm text-gray-500" id="email-description">Minimal 6 character.</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <%= submit_tag "Update Password", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

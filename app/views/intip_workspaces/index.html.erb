@@ -1,0 +1,80 @@
+<%= render 'shareds/table_title', name: 'Workspaces' %>
+
+<div class="p-4 bg-white border-b border-gray-200 sm:flex sm:items-center sm:justify-between ">
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+  <%= search_form_for(@search, url: intips_workspaces_path, method: 'get') do |f| %>
+    <div>
+    <div class="mt-1 flex rounded-md shadow-sm">
+        <div class="relative flex items-stretch flex-grow focus-within:z-10">
+        <%= f.text_field :name_cont, value: @last_query, class: "focus:ring-blue-500 focus:border-blue-500 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300", placeholder: 'Search with name' %>
+        </div>
+        <%= f.submit class: "-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" do %>
+        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <% end %>
+    </div>
+    </div>
+<% end %>
+  </div>
+
+  <div class="mt-3 flex sm:mt-0 sm:ml-4">
+    <%= link_to intips_workspaces_create_path, method: 'get', class: "ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" do %>
+      <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+      </svg>
+      Buat Workspaces
+    <% end %>
+  </div>
+</div>
+
+<div class="flex flex-col py-5">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Nama
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Total Data
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Odd row -->
+            <% @results.each.with_index(1) do |workspace, index| %>
+              <tr class="bg-white">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <%= index %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= link_to intips_member_workspaces_show_path(workspace) do %>
+                    <%= workspace.name %>
+                  <% end %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= workspace.intips.count %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= render 'shareds/tables/button_detail', action_path: intips_member_workspaces_detail_path(workspace) %>
+                  <%= render 'shareds/tables/button_delete', action_path: intips_member_workspaces_delete_path(workspace) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shareds/pagination", data: @results, name: 'data' %>

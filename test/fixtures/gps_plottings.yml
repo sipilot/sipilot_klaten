@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  sub_district: one
+  village: one
+  lattitude: MyString
+  longitude: MyString
+  land_address: MyText
+  registrant_name: MyString
+  act_for: 1
+  fullname: MyString
+  hak_type: one
+  hak_number: MyString
+  deleted_at: 2020-12-06 23:39:23
+
+two:
+  user: two
+  sub_district: two
+  village: two
+  lattitude: MyString
+  longitude: MyString
+  land_address: MyText
+  registrant_name: MyString
+  act_for: 1
+  fullname: MyString
+  hak_type: two
+  hak_number: MyString
+  deleted_at: 2020-12-06 23:39:23

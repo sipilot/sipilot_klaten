@@ -1,0 +1,124 @@
+
+<div class="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500" data-controller='homepages'>
+  <div class="relative pt-6 pb-16 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <nav class="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
+        <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+          <div class="flex items-center justify-between w-full md:w-auto">
+            <a href="#">
+              <span class="sr-only">Sipilot</span>
+              <%= image_tag('logo-klaten.png', class: "h-10 w-auto sm:h-10", alt: 'sipilot') %>
+            </a>
+            <div class="-mr-2 flex items-center md:hidden">
+              <button data-action="click->homepages#menuToggled" type="button" class="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover: text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" id="main-menu" aria-haspopup="true">
+                <span class="sr-only">Open main menu</span>
+                <!-- Heroicon name: menu -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:flex md:space-x-10">
+          <a href="#" class="font-medium  text-white hover:text-gray-200">Home</a>
+          <a href="#visi-n-misi" class="font-medium  text-white hover:text-gray-200 ">Visi Dan Misi Kantor Pertanahan</a>
+          <a href="#announcemenet" class="font-medium  text-white hover:text-gray-200">Pengumuman Berkas Selesai</a>
+          <a href="#team" class="font-medium  text-white hover:text-gray-200">Hubungi Kami</a>
+        </div>
+
+        <div class="animate__animated animate__pulse hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+          <span class="inline-flex rounded-md shadow">
+            <% if current_user %>
+              <%= link_to new_user_session_path, method: 'get', class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50" do %>
+                Profile
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path, method: 'get', class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50" do %>
+                Sign In
+              <% end %>
+            <% end %>
+          </span>
+        </div>
+
+      </nav>
+    </div>
+
+    <div data-target="homepages.toggleable" class="hidden absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+      <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+        <div class="px-5 pt-4 flex items-center justify-between">
+          <div>
+            <%= image_tag('new-logo-sipilot.png', class: 'h-8 w-auto') %>
+          </div>
+          <div class="-mr-2">
+            <button data-action="click->homepages#menuToggled" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover: text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+              <span class="sr-only">Close menu</span>
+              <!-- Heroicon name: x -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
+
+          <div class="px-2 pt-2 pb-3" role="none">
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium  text-gray-900 hover:text-gray-500" role="menuitem">Home</a>
+            <a href="#visi-n-misi" class="block px-3 py-2 rounded-md text-base font-medium  text-gray-900 hover:text-gray-500" role="menuitem">Visi Dan Misi Kantor Pertanahan</a>
+            <a href="#announcemenet" class="block px-3 py-2 rounded-md text-base font-medium  text-gray-900 hover:text-gray-500" role="menuitem">Pengumuman Berkas Selesai</a>
+            <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium  text-gray-900 hover:text-gray-500" role="menuitem">Hubungi Kami</a>
+          </div>
+
+          <div role="none">
+            <% if current_user %>
+              <%= link_to new_user_session_path,method: 'get', class: "m-4 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 md:py-4 md:text-lg md:px-10" do %>
+                Profile
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path,method: 'get', class: "m-4 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 md:py-4 md:text-lg md:px-10" do %>
+                Sign In
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <main class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
+
+        <div class='d-block'>
+          <%= image_tag('new-logo-sipilot.png', class: 'h-2/6 w-2/6 lg:h-1/6 lg:w-1/6 md:h-1/6 md:w-1/6 sm:h-1/6 sm:w-1/6 m-auto py-4')%>
+        </div>
+
+      <div class="text-center">
+        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl animate__animated animate__fadeInDown">
+          SI-PILOT
+        </h1>
+        <h1 class="mt-3 text-3xl tracking-tight  text-white sm:text-4xl md:text-4xl">
+          <span class="block xl:inline animate__animated animate__fadeInUp">Sistem Informasi dan Pelayanan Plotting Pertanahan</span>
+        </h1>
+        <p class="mt-3 max-w-md mx-auto text-base  text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl animate__animated animate__fadeInUp">
+          " Satu koordinat anda, Seribu manfaat untuk negeri "
+        </p>
+        <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+          <div class="rounded-md shadow">
+            <%= link_to new_user_registration_path,method: 'get', class: "w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10" do %>
+              Sign Up
+            <% end %>
+          </div>
+          <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+            <%= link_to new_user_session_path,method: 'get', class: "w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10" do %>
+              Sign In
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<%= form_for action_path, method: :get do %>
+  <%= hidden_field_tag 'q[created_at_gteq]', (params['q']['created_at_gteq'] rescue '') %>
+  <%= hidden_field_tag 'q[created_at_lteq]', (params['q']['created_at_lteq'] rescue '') %>
+  <%= number_field_tag 'per', 
+    params[:per],
+    class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-24 sm:text-sm border-gray-300 rounded-md",
+    placeholder: "Total"
+  %>
+<% end %>
+
+<%= form_for action_path, method: :get do %>
+  <%= hidden_field_tag 'q[created_at_gteq]', (params['q']['created_at_gteq'] rescue '') %>
+  <%= hidden_field_tag 'q[created_at_lteq]', (params['q']['created_at_lteq'] rescue '') %>
+  <%= text_field_tag 'q[fullname_or_submission_code_cont]',
+    @search_params,
+    class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md mx-2",
+    placeholder: "Search"
+  %>
+<% end %>
