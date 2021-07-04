@@ -28,11 +28,13 @@ class SuperAdminsController < ApplicationController
   end
 
   def list_member
+    @search_params = params[:q][:username_or_email_cont] rescue ''
     @search = User.members.ransack(params[:q])
     @members = @search.result.order('username asc').page(params[:page]).per(params[:per])
 
     session[:all_submission_ids] = @search.result.pluck(:id).map(&:to_s)
-    p '============'
+
+    p '=====SUPER ADMIN - LIST MEMBER======='
     p session[:all_submission_ids]
     p '============'
   end
