@@ -49,12 +49,12 @@
           </thead>
           <tbody data-selectAllCheckbox-target="allCheckbox">
 
-            <% @members.each.with_index(1) do |member, index| %>
+            <% @members.each.with_index(1) do |row, index| %>
               <tr class="bg-white">
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= check_box_tag "submission_ids[]",
-                    member.id,
-                    (session['submission_ids'].include?(member.id.to_s) rescue false),
+                    row.id,
+                    (session['submission_ids'].include?(row.id.to_s) rescue false),
                     data: {
                       controller: 'tableData',
                       action: 'change->tableData#setSessionValue',
@@ -63,21 +63,21 @@
                   %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= member.username %>
+                  <%= row.username %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= member.email %>
+                  <%= row.email %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= member.phone_number %>
+                  <%= row.phone_number %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= member.role_name %>
+                  <%= row.role_name %>
                 </td>
 
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <%= render 'shareds/tables/button_edit', action_path: sa_edit_member_path(member) %>
-                  <%= render 'shareds/tables/button_delete', action_path: sa_destroy_member_path(member) %>
+                  <%= render 'shareds/tables/button_edit', action_path: sa_edit_member_path(row) %>
+                  <%= render 'shareds/tables/button_delete', action_path: sa_destroy_member_path(row) %>
                 </td>
               </tr>
             <% end %>
