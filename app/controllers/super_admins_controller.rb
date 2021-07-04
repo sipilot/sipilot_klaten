@@ -30,6 +30,11 @@ class SuperAdminsController < ApplicationController
   def list_member
     @search = User.members.ransack(params[:q])
     @members = @search.result.order('username asc').page(params[:page]).per(params[:per])
+
+    session[:all_submission_ids] = @search.result.pluck(:id).map(&:to_s)
+    p '============'
+    p session[:all_submission_ids]
+    p '============'
   end
 
   def edit_member
@@ -47,6 +52,16 @@ class SuperAdminsController < ApplicationController
   end
 
   def destroy_member
+    flash[:notice] = 'Berhasil menghapus member.'
+    redirect_to superadmin_member_path
+  end
+
+  def destroy_all_member
+    submissions = User.where(id: submission_ses)
+    submissions.destroy_all
+
+    session[:submission_ids] = []
+    session[:is_check_all] = false
     flash[:notice] = 'Berhasil menghapus member.'
     redirect_to superadmin_member_path
   end
