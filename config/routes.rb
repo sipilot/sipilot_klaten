@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post    '/superadmin/member/edit/process', to: 'super_admins#process_update_member'
   get     '/superadmin/member/new', to: 'super_admins#new_member', as: 'sa_new_member'
   post    '/superadmin/member/new/process', to: 'super_admins#process_create_member'
-  # delete  '/superadmin/member/delete/all', to: 'super_admins#destroy_all_member', as: 'sa_destroy_all_member'
+  delete  '/superadmin/member/delete/all', to: 'super_admins#destroy_all_member', as: 'sa_destroy_all_member'
   delete  '/superadmin/member/delete/:id', to: 'super_admins#destroy_member', as: 'sa_destroy_member'
   get     '/superadmin/admin', to: 'super_admins#list_admin'
   get     '/superadmin/admin/edit/:id', to: 'super_admins#edit_admin', as: 'sa_edit_admin'
