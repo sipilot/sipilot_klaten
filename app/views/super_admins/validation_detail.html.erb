@@ -166,7 +166,7 @@
                 <button class="button_measure_letter" value="<%= url_for(measuring_letter.image) %>">
                   Lihat Dokumen
                 </button>
-              </li>
+              </li>              
             <% end %>
             </ul>
           <% end %>
@@ -219,19 +219,42 @@
 
 <script>
   const button_land_book = document.getElementById('button_land_book')
-  const button_measure_letter = document.querySelector(".button_measure_letter");
+  // const button_measure_letter = document.querySelector(".button_measure_letter");
+  const button_measure_letter = document.querySelectorAll(".button_measure_letter");
   const button_ktp = document.getElementById('button_ktp')
   const button_authority_letter = document.getElementById('button_authority_letter')
   const closebutton = document.getElementById('closebutton')
   const modal = document.getElementById('modal')
 
-  if(button_measure_letter) {
-    console.log("MEASURE LETTER")
-    button_measure_letter.addEventListener('click', () => {
-      setupModal(button_measure_letter, "measure_letter")
-      modal.classList.add('scale-100')
-    })
+//   for (var i = 0; i < button_measure_letter.length; i++) {
+//     console.log("MEASURE LETTER", i)
+//     if(button_measure_letter[i]) {
+//       button_measure_letter[i].addEventListener('click', () => {
+//         // console.log("mesuare", button_measure_letter[0].getAttribute('value'))
+//         const button = button_measure_letter[0]
+//         setupModal(button, "measure_letter")
+//         modal.classList.add('scale-100')
+//       })
+//     }
+//   }
+
+  if(button_measure_letter.length !== 0) {
+    for (var i = 0; i < button_measure_letter.length; i++) {
+      console.log("MEASURE LETTER", i)
+      if(button_measure_letter[i]) {
+        button_measure_letter[i].addEventListener('click', () => {
+        const pdf = button_measure_letter[0].getAttribute('value')
+        setupModal(pdf, "measure_letter")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
   }
+
+  function testing(element) {
+    console.log("mesuare", element.getAttribute('value'))
+  }
+
 
   if(button_ktp) {
     button_ktp.addEventListener('click', () => {
@@ -255,11 +278,11 @@
   }
   
   
-  function setupModal(element_button, element_id_title) {
+  function setupModal(path_pdf, element_id_title) {
     var title_data = document.getElementById(element_id_title)
     var title_modal = document.getElementById('title-pdf')
     title_modal.textContent = title_data.textContent
-    var path_pdf = element_button.getAttribute('value')
+    // var path_pdf = element_button.getAttribute('value')
     var content_pdf = document.querySelector('#content-pdf')
     content_pdf.setAttribute("src", path_pdf)
     content_pdf.style.visibility = 'visible';
