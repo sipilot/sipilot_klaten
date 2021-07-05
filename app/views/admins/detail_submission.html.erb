@@ -128,16 +128,18 @@
       </div>
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+        <dt id="ktp" class="text-sm font-medium text-gray-500">
           KTP
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
             <% if @submission.image_id_number.nil?  %>
-              Gambar tidak ditemukan
+              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (@submission.image_id_number) %>
+                <button id="button_ktp" value="<%= url_for(@submission.image_id_number) %>">
+                  Lihat Dokumen
+                </button>
               </div>
             <% end %>
           </div>
@@ -145,7 +147,7 @@
       </div>
 
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+        <dt id="authority_letter" class="text-sm font-medium text-gray-500">
           Surat Kuasa
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -154,45 +156,51 @@
               Gambar tidak ditemukan
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (@submission.image_authority_letter) %>
+                <button id="button_authority_letter" value="<%= url_for(@submission.image_authority_letter) %>">
+                  Lihat Dokumen
+                </button>
               </div>
             <% end %>
           </div>
         </dd>
       </div>
 
-      <div class="bg-gray-5 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt id="measure_letter" class="text-sm font-medium text-gray-500">
           Surat Ukur
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
             Gambar tidak ditemukan
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <ul class="space-y-2">
             <% @submission.image_measuring_letter.each do |measuring_letter| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (measuring_letter.image) %>
-              </li>
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
+                <button class="button_measure_letter" value="<%= url_for(measuring_letter.image) %>">
+                  Lihat Dokumen 
+                </button>
+              </li>            
             <% end %>
             </ul>
           <% end %>
         </dd>
       </div>
 
-      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt id="land_book" class="text-sm font-medium text-gray-500">
           Buku Tanah
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty? %>
+          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
             Gambar tidak ditemukan
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <ul class="space-y-2">
             <% @submission.image_land_book.each do |land_book| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (land_book.image) %>
-              </li>
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
+                <button class="button_land_book" value="<%= url_for(land_book.image) %>">
+                  Lihat Dokumen 
+                </button>
+              </li>            
             <% end %>
             </ul>
           <% end %>
@@ -201,3 +209,98 @@
     </dl>
   </div>
 </div>
+
+<%# MODAL %>
+<div id="modal" class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-500 bg-opacity-50 transform scale-0 transition-transform duration-300">
+<!-- Modal content -->
+<div class="bg-white w-1/2 h-5/6 p-5">
+  <div class="h-1/6">
+    <button id="closebutton" type="button" class="focus:outline-none">
+      <!-- Hero icon - close button -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </button>
+    <!--Close modal button-->
+    <h1 class="text-xl text-center items-center justify-center" id="title-pdf">  </h1>
+  </div>
+  <div class="h-5/6 w-full flex items-center justify-center content-center">
+      <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf">
+      <%# <embed id="content-pdf-2" class="h-full w-full" src="" type="application/x-pdf"> %>
+      <%# <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
+        Example fallback content: This browser does not support PDFs. Please download the PDF to view it: Download PDF.
+      </object> %>
+  </div>
+</div>
+</div>
+
+<script>
+  const button_land_book = document.querySelectorAll('.button_land_book')
+  const button_measure_letter = document.querySelectorAll(".button_measure_letter");
+  const button_ktp = document.getElementById('button_ktp')
+  const button_authority_letter = document.getElementById('button_authority_letter')
+  const closebutton = document.getElementById('closebutton')
+  const modal = document.getElementById('modal')
+
+  if(button_measure_letter.length !== 0) {
+    for (var i = 0; i < button_measure_letter.length; i++) {
+      if(button_measure_letter[i]) {
+        button_measure_letter[i].addEventListener('click', () => {
+        const pdf = button_measure_letter[0].getAttribute('value')
+        setupModal(pdf, "measure_letter")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
+  }
+
+
+  if(button_ktp) {
+    button_ktp.addEventListener('click', () => {
+      const pdf = button_ktp.getAttribute('value')
+      setupModal(pdf, "ktp")
+      modal.classList.add('scale-100')
+    })
+  }
+
+  if(button_land_book.length !== 0) {
+    for (var i = 0; i < button_land_book.length; i++) {
+      if(button_land_book[i]) {
+        button_land_book[i].addEventListener('click', () => {
+        const pdf = button_land_book[0].getAttribute('value')
+        setupModal(pdf, "land_book")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
+  }
+
+  if(button_authority_letter) {
+    button_authority_letter.addEventListener('click', () => {
+      const pdf = button_authority_letter.getAttribute('value')
+      setupModal(pdf, "authority_letter")
+      modal.classList.add('scale-100')
+    })  
+  }
+  
+  
+  function setupModal(path_pdf, element_id_title) {
+    var title_data = document.getElementById(element_id_title)
+    var title_modal = document.getElementById('title-pdf')
+    title_modal.textContent = title_data.textContent
+    // var path_pdf = element_button.getAttribute('value')
+    var content_pdf = document.querySelector('#content-pdf')
+    // var content_pdf_2 = document.querySelector('#content-pdf-2')
+    // content_pdf_2.setAttribute("src", path_pdf)
+    content_pdf.setAttribute("src", path_pdf)
+    content_pdf.style.visibility = 'visible';
+  }
+
+  closebutton.addEventListener('click', () => {
+    modal.classList.remove('scale-100')
+    const pdfViewer = document.getElementById('content-pdf')
+    pdfViewer.style.visibility = 'hidden';
+  })
+</script>
