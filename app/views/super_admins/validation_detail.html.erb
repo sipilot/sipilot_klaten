@@ -135,17 +135,19 @@
         </dd>
       </div>
 
-      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt id="ktp" class="text-sm font-medium text-gray-500">
           KTP
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
             <% if @submission.image_id_number.nil?  %>
-              Gambar tidak ditemukan
+              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (@submission.image_id_number) %>
+                <button id="button_ktp" value="<%= url_for(@submission.image_id_number) %>">
+                  Lihat Dokumen
+                </button>
               </div>
             <% end %>
           </div>
@@ -160,40 +162,39 @@
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
             Gambar tidak ditemukan
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <ul class="space-y-2">
             <% @submission.image_measuring_letter.each do |measuring_letter| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
                 <button class="button_measure_letter" value="<%= url_for(measuring_letter.image) %>">
-                  Lihat Dokumen
+                  Lihat Dokumen 
                 </button>
-              </li>              
+              </li>            
             <% end %>
             </ul>
           <% end %>
         </dd>
       </div>
 
-      <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt id="land_book" class="text-sm font-medium text-gray-500">
           Buku Tanah
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty? %>
+          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
             Gambar tidak ditemukan
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+            <ul class="space-y-2">
             <% @submission.image_land_book.each do |land_book| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <%= image_tag (land_book.image) %>
-              </li>
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
+                <button class="button_land_book" value="<%= url_for(land_book.image) %>">
+                  Lihat Dokumen 
+                </button>
+              </li>            
             <% end %>
             </ul>
           <% end %>
         </dd>
       </div>
-    </dl>
-  </div>
-</div>
 
 <%# MODAL %>
 <div id="modal" class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-500 bg-opacity-50 transform scale-0 transition-transform duration-300">
@@ -218,29 +219,15 @@
 </div>
 
 <script>
-  const button_land_book = document.getElementById('button_land_book')
-  // const button_measure_letter = document.querySelector(".button_measure_letter");
+  const button_land_book = document.querySelectorAll('.button_land_book')
   const button_measure_letter = document.querySelectorAll(".button_measure_letter");
   const button_ktp = document.getElementById('button_ktp')
   const button_authority_letter = document.getElementById('button_authority_letter')
   const closebutton = document.getElementById('closebutton')
   const modal = document.getElementById('modal')
 
-//   for (var i = 0; i < button_measure_letter.length; i++) {
-//     console.log("MEASURE LETTER", i)
-//     if(button_measure_letter[i]) {
-//       button_measure_letter[i].addEventListener('click', () => {
-//         // console.log("mesuare", button_measure_letter[0].getAttribute('value'))
-//         const button = button_measure_letter[0]
-//         setupModal(button, "measure_letter")
-//         modal.classList.add('scale-100')
-//       })
-//     }
-//   }
-
   if(button_measure_letter.length !== 0) {
     for (var i = 0; i < button_measure_letter.length; i++) {
-      console.log("MEASURE LETTER", i)
       if(button_measure_letter[i]) {
         button_measure_letter[i].addEventListener('click', () => {
         const pdf = button_measure_letter[0].getAttribute('value')
@@ -251,28 +238,31 @@
     }
   }
 
-  function testing(element) {
-    console.log("mesuare", element.getAttribute('value'))
-  }
-
 
   if(button_ktp) {
     button_ktp.addEventListener('click', () => {
-      setupModal(button_ktp, "ktp")
+      const pdf = button_ktp.getAttribute('value')
+      setupModal(pdf, "ktp")
       modal.classList.add('scale-100')
     })
   }
 
-  if(button_land_book) {
-    button_land_book.addEventListener('click', () => {
-      setupModal(button_land_book, "land_book")
-      modal.classList.add('scale-100')
-    })
+  if(button_land_book.length !== 0) {
+    for (var i = 0; i < button_land_book.length; i++) {
+      if(button_land_book[i]) {
+        button_land_book[i].addEventListener('click', () => {
+        const pdf = button_land_book[0].getAttribute('value')
+        setupModal(pdf, "land_book")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
   }
 
   if(button_authority_letter) {
     button_authority_letter.addEventListener('click', () => {
-      setupModal(button_authority_letter, "authority_letter")
+      const pdf = button_authority_letter.getAttribute('value')
+      setupModal(pdf, "authority_letter")
       modal.classList.add('scale-100')
     })  
   }
