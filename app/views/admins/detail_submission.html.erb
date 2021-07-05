@@ -227,11 +227,14 @@
     <h1 class="text-xl text-center items-center justify-center" id="title-pdf">  </h1>
   </div>
   <div class="h-5/6 w-full flex items-center justify-center content-center">
-      <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf">
+      <%# <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf"> %>
       <%# <embed id="content-pdf-2" class="h-full w-full" src="" type="application/x-pdf"> %>
       <%# <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
         Example fallback content: This browser does not support PDFs. Please download the PDF to view it: Download PDF.
       </object> %>
+      <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
+        Please Download Here <a id="content-pdf-2" href="path_to_file"">Download</a>
+      </object>
   </div>
 </div>
 </div>
@@ -292,8 +295,8 @@
     title_modal.textContent = title_data.textContent
     // var path_pdf = element_button.getAttribute('value')
     var content_pdf = document.querySelector('#content-pdf')
-    // var content_pdf_2 = document.querySelector('#content-pdf-2')
-    // content_pdf_2.setAttribute("src", path_pdf)
+    var content_pdf_2 = document.querySelector('#content-pdf-2')
+    content_pdf_2.setAttribute("href", path_pdf)
     content_pdf.setAttribute("src", path_pdf)
     content_pdf.style.visibility = 'visible';
   }
