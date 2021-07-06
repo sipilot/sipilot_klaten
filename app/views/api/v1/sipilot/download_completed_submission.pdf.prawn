@@ -29,7 +29,7 @@ prawn_document do |pdf|
     #endtitle
 
     # BERKAS NUMBER
-    pdf.font_size(8) { pdf.text "No. Berkas Online: #{submission.submission_code}", align: :right }
+    pdf.font_size(8) { pdf.text "No. Berkas Online: <strong>#{submission.submission_code}</strong>", align: :right, inline_format: true }
     pdf.move_down(10)
 
     #end new header
@@ -40,6 +40,24 @@ prawn_document do |pdf|
     # pdf.stroke_horizontal_rule
     # pdf.move_down(15)
 
+    #Constent 1
+    pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
+    data = [
+      ["Alamat", ": #{submission.land_address}"],
+      ["Desa", ": #{submission.village_name}"],
+      ["Kecamatan", ": #{submission.sub_district_name}"],
+      ["Kabupaten", ": Klaten"],
+      ["Provinsi", ": JAWA TENGAH"],
+    ]
+    pdf.table data, cell_style: {
+            width: 150,
+            height: 17,
+            border_width: 0,
+            min_font_size: 8,
+            overflow: :shrink_to_fit,
+          }
+    pdf.move_down(15)
+    #end content 1
     data = [
       ["No Berkas", ": #{submission.submission_code}"],
       ["Tanggal", ": #{submission.date_completion}"],
