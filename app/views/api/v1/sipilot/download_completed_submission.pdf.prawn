@@ -21,10 +21,10 @@ prawn_document do |pdf|
     pdf.move_down(10)
 
     #title
-    title ||= "BUKTI INFORMASI TERVALIDASI MELALUI SIPILOT" if submission.service_name == "Validasi"
+    title ||= "<em>PLOTTING</em> BIDANG TANAH" if submission.service_name == "Validasi"
     title ||= "INFORMASI POLA RUANG" if submission.service_name == "Pola Ruang"
     title ||= "BUKTI INFORMASI SIPILOT"
-    pdf.font_size(15) { pdf.text title, style: :bold, align: :center }
+    pdf.font_size(15) { pdf.text title, style: :bold, align: :center, inline_format: true }
     pdf.move_down(5)
     #endtitle
 
@@ -33,26 +33,26 @@ prawn_document do |pdf|
     pdf.move_down(10)
 
     #end new header
-    if submission.service_name == "Pola Ruang"
-      #Constent 1
-      pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
-      data = [
-        ["Alamat", ": #{submission.land_address}"],
-        ["Desa", ": #{submission.village_name}"],
-        ["Kecamatan", ": #{submission.sub_district_name}"],
-        ["Kabupaten", ": Klaten"],
-        ["Provinsi", ": JAWA TENGAH"],
-      ]
-      pdf.table data, cell_style: {
-                        width: 150,
-                        height: 17,
-                        border_width: 0,
-                        min_font_size: 8,
-                        overflow: :shrink_to_fit,
-                      }
-      pdf.move_down(15)
-      #Constent 1
 
+    #Constent 1
+    pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
+    data = [
+      ["Alamat", ": #{submission.land_address}"],
+      ["Desa", ": #{submission.village_name}"],
+      ["Kecamatan", ": #{submission.sub_district_name}"],
+      ["Kabupaten", ": Klaten"],
+      ["Provinsi", ": JAWA TENGAH"],
+    ]
+    pdf.table data, cell_style: {
+                      width: 150,
+                      height: 17,
+                      border_width: 0,
+                      min_font_size: 8,
+                      overflow: :shrink_to_fit,
+                    }
+    pdf.move_down(15)
+    #Constent 1
+    if submission.service_name == "Pola Ruang"
       #content 2
       pdf.font_size(8) {
         pdf.text "Berdasarkan dokumen yang dilampirkan untuk permohonan Informasi Pola Ruang dengan bukti:"
@@ -114,6 +114,30 @@ prawn_document do |pdf|
       pdf.move_down(5)
       pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50, position: :right
       #end ttd
+    end
+
+    if submission.service_name == "Validasi"
+      #content 2
+      pdf.font_size(8) {
+        pdf.text "Berdasarkan dokumen yang dilampirkan untuk permohonan Validasi Data Pertanahan dengan bukti:"
+      }
+      data = [
+        ["Alas Hak", ": alas name"],
+        ["Nomor", ": #{submission.hak_number}"],
+        ["Jenis Hak", ": #{submission.hak_name}"],
+        ["NIB", ": #{submission.nib}"],
+        # ["Atas Nama", ": #{submission.hak_type_id === 1 ? "Diri sendiri" : "Kuasa"}"],
+        ["Atas Nama", ": #{submission.on_behalf}"],
+      ]
+      pdf.table data, cell_style: {
+                        width: 150,
+                        height: 17,
+                        border_width: 0,
+                        min_font_size: 8,
+                        overflow: :shrink_to_fit,
+                      }
+      pdf.move_down(15)
+      #endcontent 2
     end
 
     ## old
