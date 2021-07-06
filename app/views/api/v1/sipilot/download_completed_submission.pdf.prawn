@@ -74,6 +74,7 @@ prawn_document do |pdf|
                         overflow: :shrink_to_fit,
                       }
       pdf.move_down(15)
+      #end content 2
       # MAPS
       pdf.font_size(8) { pdf.text "SISTEM KOORDINAT GEOGRAPHIC (LAT/LONG)", style: :bold }
       coordinates = [
@@ -93,7 +94,17 @@ prawn_document do |pdf|
       rescue StandardError
         pdf.text ""
       end
-      #end content 2
+      pdf.move_down(5)
+      pdf.font_size(8) {
+        pdf.text "Basemap <em>Roadmap Google Satellite</em> #{Time.now.strftime("%Y")}", inline_format: true
+      }
+      #end maps
+      #catatan
+      pdf.move_down(15)
+      pdf.font_size(8) {
+        pdf.text("Berdasarkan <strong>Peraturan Daerah Kabupaten Klaten Nomor 11 Tahun 2011</strong> tentang Rencana Tata Ruang Wilayah Kabupaten Klaten Tahun 2011-2031, bahwa lokasi yang dimaksud sesuai arahan pola ruang peraturan tersebut di atas, ditetapkan sebagai:", inline_format: true)
+      }
+      #end catatan
     end
 
     ## old
