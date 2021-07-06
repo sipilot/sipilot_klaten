@@ -153,7 +153,7 @@
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <div class='border border-gray-200 items-center justify-center rounded-md divide-y divide-gray-200'>
             <% if @submission.image_authority_letter.nil?  %>
-              Dokumen tidak ditemukan
+              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
                 <button id="button_authority_letter" value="<%= url_for(@submission.image_authority_letter) %>">
@@ -171,7 +171,7 @@
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center">
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
-            Dokumen tidak ditemukan
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_measuring_letter.each do |measuring_letter| %>
@@ -192,7 +192,7 @@
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
-            Dokumen tidak ditemukan
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_land_book.each do |land_book| %>
@@ -297,7 +297,7 @@
     var content_pdf = document.querySelector('#content-pdf')
     var content_pdf_2 = document.querySelector('#content-pdf-2')
     content_pdf_2.setAttribute("href", path_pdf)
-    content_pdf.setAttribute("src", path_pdf)
+    content_pdf.setAttribute("data", path_pdf)
     content_pdf.style.visibility = 'visible';
   }
 

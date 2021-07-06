@@ -160,7 +160,7 @@
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
-            Gambar tidak ditemukan
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_measuring_letter.each do |measuring_letter| %>
@@ -181,7 +181,7 @@
         </dt>        
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
-            Gambar tidak ditemukan
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_land_book.each do |land_book| %>
