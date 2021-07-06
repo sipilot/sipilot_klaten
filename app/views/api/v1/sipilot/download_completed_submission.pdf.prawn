@@ -2,6 +2,26 @@ require "open-uri"
 
 prawn_document do |pdf|
   @submissions_exports.each do |submission|
+
+    ##new header
+    pdf.float {
+      pdf.image "#{Rails.root}/app/assets/images/logo-klaten.png", width: 50, height: 50
+    }
+    pdf.font_size(15) {
+      pdf.text "KEMENTERIAN AGRARIA DAN TATA RUANG /", align: :center, style: :bold
+      pdf.text "BADAN PERTANAHAN NASIONAL", align: :center, style: :bold
+    }
+    pdf.text "KANTOR PERTANAHAN KABUPATEN SRAGEN", align: :center, size: 12
+    pdf.text "Jalan Veteran Nomor 88, Kelurahan Barenglor, Kecamatan Klaten Utara, Klaten, Kode", align: :center, size: 10
+    pdf.text "pos: 57438, Telepon: (0272) 321983, Website: kab-klaten.atrbpn.go.id.", align: :center, size: 10
+    pdf.move_down(10)
+
+    # DRAW LINE
+    pdf.stroke_horizontal_rule
+    pdf.move_down(10)
+    
+    #end new header
+
     title ||= "BUKTI INFORMASI TERVALIDASI MELALUI SIPILOT" if submission.service_name == "Validasi"
     title ||= "BUKTI INFORMASI POLA RUANG MELALUI SIPILOT" if submission.service_name == "Pola Ruang"
     title ||= "BUKTI INFORMASI SIPILOT"
