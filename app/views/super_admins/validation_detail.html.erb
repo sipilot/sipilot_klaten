@@ -288,7 +288,7 @@
   closebutton.addEventListener('click', () => {
     modal.classList.remove('scale-100')
     const pdfViewer = document.getElementById('content-pdf')
-    pdfViewer.setAttribute("data", "")
+    pdfViewer.setAttribute("src", "")
     pdfViewer.style.visibility = 'hidden';
   })
 </script>
