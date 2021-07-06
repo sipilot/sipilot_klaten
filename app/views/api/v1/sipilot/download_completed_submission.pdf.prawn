@@ -67,13 +67,32 @@ prawn_document do |pdf|
         ["Atas Nama", ": #{submission.on_behalf}"],
       ]
       pdf.table data, cell_style: {
-              width: 150,
-              height: 17,
-              border_width: 0,
-              min_font_size: 8,
-              overflow: :shrink_to_fit,
-            }
+                        width: 150,
+                        height: 17,
+                        border_width: 0,
+                        min_font_size: 8,
+                        overflow: :shrink_to_fit,
+                      }
       pdf.move_down(15)
+      # MAPS
+      pdf.font_size(8) { pdf.text "SISTEM KOORDINAT GEOGRAPHIC (LAT/LONG)", style: :bold }
+      coordinates = [
+        ["Lat", ": #{submission.lattitude}"],
+        ["Long", ": #{submission.longitude}"],
+      ]
+      pdf.table coordinates, cell_style: {
+                               width: 150,
+                               height: 17,
+                               border_width: 0,
+                               min_font_size: 8,
+                               overflow: :shrink_to_fit,
+                             }
+      pdf.move_down(5)
+      begin
+        pdf.image open("https://maps.googleapis.com/maps/api/staticmap?center=#{submission.lattitude},#{submission.longitude}&zoom=17&size=200x200&&markers=color:red%7Clabel:C%7C#{submission.lattitude},#{submission.longitude}&maptype=roadmap&key=#{ENV["MAPS_API_KEY"]}")
+      rescue StandardError
+        pdf.text ""
+      end
       #end content 2
     end
 
