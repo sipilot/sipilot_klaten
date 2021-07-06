@@ -50,14 +50,35 @@ prawn_document do |pdf|
       ["Provinsi", ": JAWA TENGAH"],
     ]
     pdf.table data, cell_style: {
-            width: 150,
-            height: 17,
-            border_width: 0,
-            min_font_size: 8,
-            overflow: :shrink_to_fit,
-          }
+                      width: 150,
+                      height: 17,
+                      border_width: 0,
+                      min_font_size: 8,
+                      overflow: :shrink_to_fit,
+                    }
     pdf.move_down(15)
     #end content 1
+    
+    # content 2
+    pdf.font_size(8) { pdf.text "Berdasarkan dokumen yang dilampirkan untuk permohonan Informasi Pola Ruang dengan bukti:" }
+    data = [
+      ["Alas Hak", ": #{submission.alas_name}"],
+      ["Nomor", ": #{submission.hak_number}"],
+      ["Jenis Hak", ": #{submission.hak_name}"],
+      ["NIB", ": #{submission.nib}"],
+      ["Atas Nama", ": #{submission.hak_type_id === 1 ? "Diri sendiri" : "Kuasa"}"],
+      # ["Atas Nama", ": #{submission.on_behalf}"],
+    ]
+    pdf.table data, cell_style: {
+                      width: 150,
+                      height: 17,
+                      border_width: 0,
+                      min_font_size: 8,
+                      overflow: :shrink_to_fit,
+                    }
+    pdf.move_down(15)
+    #end content 2
+
     data = [
       ["No Berkas", ": #{submission.submission_code}"],
       ["Tanggal", ": #{submission.date_completion}"],
