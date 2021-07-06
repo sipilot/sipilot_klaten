@@ -161,14 +161,14 @@ prawn_document do |pdf|
       pdf.font_size(8) {
         pdf.text "Basemap <em>Roadmap Google Satellite</em> #{Time.now.strftime("%Y")}", inline_format: true
       }
-      pdf.move_down(5)
+      # pdf.move_down(5)
       #end maps
 
       #catatan
       pdf.font_size(8) {
         pdf.text "Catatan :", style: :bold
       }
-      pdf.move_down(5)
+      pdf.move_down(3)
       # pdf.text "- Tunjukkan bukti ini kepada admin sipilot di Kantor Pertanahan"
       notes = [
         [{ :content => "1. ", size: 8 }, { :content => "Plotting bidang tanah ini bukan merupakan Tanda Bukti Hak Atas Tanah.", size: 8 }],
