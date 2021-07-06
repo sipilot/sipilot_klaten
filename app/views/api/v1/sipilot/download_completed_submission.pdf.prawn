@@ -104,7 +104,7 @@ prawn_document do |pdf|
       pdf.font_size(8) {
         pdf.text("Berdasarkan <strong>Peraturan Daerah Kabupaten Klaten Nomor 11 Tahun 2011</strong> tentang Rencana Tata Ruang Wilayah Kabupaten Klaten Tahun 2011-2031, bahwa lokasi yang dimaksud sesuai arahan pola ruang peraturan tersebut di atas, ditetapkan sebagai:", inline_format: true)
       }
-      pdf.text("<strong>#{submission.admin_referral}</strong>", font_size: 8)
+      pdf.text("<strong>#{submission.admin_referral}</strong>", font_size: 8, inline_format: true)
       #end catatan
 
       #start ttd
