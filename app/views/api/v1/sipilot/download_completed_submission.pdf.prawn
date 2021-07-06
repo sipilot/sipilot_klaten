@@ -52,6 +52,21 @@ prawn_document do |pdf|
                       }
       pdf.move_down(15)
       #Constent 1
+
+      #content 2
+      pdf.font_size(8) {
+        pdf.text "Berdasarkan dokumen yang dilampirkan untuk permohonan Informasi Pola Ruang dengan bukti:"
+      }
+
+      data = [
+        ["Alas Hak", ": #{submission.alas_name}"],
+        ["Nomor", ": #{submission.hak_number}"],
+        ["Jenis Hak", ": #{submission.hak_name}"],
+        ["NIB", ": #{submission.nib}"],
+        # ["Atas Nama", ": #{submission.hak_type_id === 1 ? "Diri sendiri" : "Kuasa"}"],
+        ["Atas Nama", ": #{submission.on_behalf}"],
+      ]
+      #end content 2
     end
 
     ## old
