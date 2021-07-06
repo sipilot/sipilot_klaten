@@ -19,19 +19,26 @@ prawn_document do |pdf|
     # DRAW LINE
     pdf.stroke_horizontal_rule
     pdf.move_down(10)
-    
+
+    #title
+    title ||= "BUKTI INFORMASI TERVALIDASI MELALUI SIPILOT" if submission.service_name == "Validasi"
+    title ||= "INFORMASI POLA RUANG" if submission.service_name == "Pola Ruang"
+    title ||= "BUKTI INFORMASI SIPILOT"
+    pdf.font_size(15) { pdf.text title, style: :bold, align: :center }
+    pdf.move_down(5)
+    #endtitle
+
+    # BERKAS NUMBER
+    pdf.font_size(8) { pdf.text "No. Berkas Online: #{submission.submission_code}", align: :right }
+    pdf.move_down(10)
+
     #end new header
 
-    title ||= "BUKTI INFORMASI TERVALIDASI MELALUI SIPILOT" if submission.service_name == "Validasi"
-    title ||= "BUKTI INFORMASI POLA RUANG MELALUI SIPILOT" if submission.service_name == "Pola Ruang"
-    title ||= "BUKTI INFORMASI SIPILOT"
-
-    pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50
-    pdf.move_down(10)
-    pdf.font_size(15) { pdf.text title, style: :bold }
-    pdf.move_down(10)
-    pdf.stroke_horizontal_rule
-    pdf.move_down(15)
+    # pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50
+    # pdf.move_down(10)
+    # pdf.move_down(10)
+    # pdf.stroke_horizontal_rule
+    # pdf.move_down(15)
 
     data = [
       ["No Berkas", ": #{submission.submission_code}"],
