@@ -162,6 +162,69 @@ prawn_document do |pdf|
         pdf.text "Basemap <em>Roadmap Google Satellite</em> #{Time.now.strftime("%Y")}", inline_format: true
       }
       #end maps
+
+      #catatan
+      pdf.font_size(8) {
+        pdf.text "Catatan :", style: :bold
+      }
+      pdf.move_down(5)
+      # pdf.text "- Tunjukkan bukti ini kepada admin sipilot di Kantor Pertanahan"
+      notes = [
+        [{ :content => "1. ", size: 8 }, { :content => "Plotting bidang tanah ini bukan merupakan Tanda Bukti Hak Atas Tanah.", size: 8 }],
+        [{ :content => "2. ", size: 8 }, { :content => "Posisi/letak titik koordinat bidang tanah berdasarkan dari informasi pengguna layanan", size: 8 }],
+        [{ :content => "3. ", size: 8 }, { :content => "Pengguna layanan bertanggung jawab penuh baik secara pidana maupun perdata tanpa melibatkan pihak lain terhadap segala bentuk permasalahan atau resiko hukum yang mungkin terjadi di kemudian hari apabila terjadi kesalahan penunjukan yang dilakukan oleh pengguna layanan", size: 8 }],
+      ]
+      pdf.table notes, cell_style: {
+                         :padding => [0, 0, 0, 0],
+                         #  height: 15,
+                         border_width: 0,
+                         #  min_font_size: 8,
+                         overflow: :shrink_to_fit,
+                       }
+      pdf.move_down(10)
+      #end catatan
+      # FOOTER ==================
+      imagefile = "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg"
+      pdf.table([
+        [
+          {
+            :content => "No", width: 15, align: :center, size: 8,
+          },
+          {
+            :content => "Petugas",
+            size: 8,
+          },
+          {
+            :content => "Nama",
+            size: 8,
+          },
+          {
+            :content => "Keterangan", size: 8,
+          }, {
+            :content => "", border_width: 0,
+          }, {
+            :content => "Sragen, #{I18n.l DateTime.now, locale: :id, format: :short}",
+            border_width: 0,
+            align: :right,
+            size: 9,
+          },
+        ],
+        [{ :content => "1", width: 15, align: :center, size: 8 },
+         { :content => "Petugas <em>Ploting</em>", size: 8 }, "", "", { :content => "", border_width: 0 }, {
+          :image => imagefile,
+          :image_height => 50,
+          :image_width => 50,
+          :rowspan => 3,
+          border_width: 0,
+          position: :right,
+        }],
+        [{ :content => "2", width: 15, align: :center, size: 8 }, { :content => "Validator", size: 8 }, "", "", { :content => "", border_width: 0 }],
+        [{ :content => "", border_width: 0, :colspan => 4 }],
+      ], cell_style: {
+           inline_format: true,
+         #  height: 10,
+         #  font_size: 8,
+         }, width: pdf.bounds.width)
     end
 
     ## old
