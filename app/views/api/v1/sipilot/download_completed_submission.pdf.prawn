@@ -32,7 +32,6 @@ prawn_document do |pdf|
     pdf.font_size(8) { pdf.text "No. Berkas Online: <strong>#{submission.submission_code}</strong>", align: :right, inline_format: true }
     pdf.move_down(10)
 
-    pdf.text "Service name : #{submission.service_name}"
     #end new header
 
     # pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50
@@ -40,63 +39,43 @@ prawn_document do |pdf|
     # pdf.move_down(10)
     # pdf.stroke_horizontal_rule
     # pdf.move_down(15)
-
+    pdf.stroke_horizontal_rule
+    pdf.text "Service name : #{submission.service_name}"
+    pdf.text submission.to_json
+    pdf.stroke_horizontal_rule
     #Constent 1
     pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
-    data = [
-      ["Alamat", ": #{submission.land_address}"],
-      ["Desa", ": #{submission.village_name}"],
-      ["Kecamatan", ": #{submission.sub_district_name}"],
-      ["Kabupaten", ": Klaten"],
-      ["Provinsi", ": JAWA TENGAH"],
-    ]
-    pdf.table data, cell_style: {
-                      width: 150,
-                      height: 17,
-                      border_width: 0,
-                      min_font_size: 8,
-                      overflow: :shrink_to_fit,
-                    }
-    pdf.move_down(15)
-    #end content 1
-
-    if submission.service_name == "Pola Ruang"
-      # content 2 pola ruang
-      pdf.font_size(8) { pdf.text "Berdasarkan dokumen yang dilampirkan untuk permohonan Informasi Pola Ruang dengan bukti:" }
-      # pdf.text submission.to_json
-      data2 = [
-        ["Alas Hak", ": #{submission.alas_name}"],
-        ["Nomor", ": #{submission.hak_number}"],
-        ["Jenis Hak", ": #{submission.hak_name}"],
-        ["NIB", ": #{submission.nib}"],
-        # ["Atas Nama", ": #{submission.act_for === "Diri sendiri" ? "Diri sendiri" : submission.on_behalf}"],
-        ["Atas Nama", ": #{submission.on_behalf}"],
-      ]
-      pdf.table data2, cell_style: {
-                        width: 150,
-                        height: 17,
-                        border_width: 0,
-                        min_font_size: 8,
-                        overflow: :shrink_to_fit,
-                      }
-      pdf.move_down(15)
-      #end content 2
-    end
-
     # data = [
-    #   ["No Berkas", ": #{submission.submission_code}"],
-    #   ["Tanggal", ": #{submission.date_completion}"],
-    #   ["Nomor Hak", ": #{submission.hak_number}"],
-    #   ["Jenis Hak", ": #{submission.hak_name}"],
+    #   ["Alamat", ": #{submission.land_address}"],
+    #   ["Desa", ": #{submission.village_name}"],
+    #   ["Kecamatan", ": #{submission.sub_district_name}"],
+    #   ["Kabupaten", ": Klaten"],
+    #   ["Provinsi", ": JAWA TENGAH"],
     # ]
     # pdf.table data, cell_style: {
     #                   width: 150,
-    #                   height: 30,
+    #                   height: 17,
     #                   border_width: 0,
     #                   min_font_size: 8,
     #                   overflow: :shrink_to_fit,
     #                 }
     # pdf.move_down(15)
+
+    ## old
+    data = [
+      ["No Berkas", ": #{submission.submission_code}"],
+      ["Tanggal", ": #{submission.date_completion}"],
+      ["Nomor Hak", ": #{submission.hak_number}"],
+      ["Jenis Hak", ": #{submission.hak_name}"],
+    ]
+    pdf.table data, cell_style: {
+                      width: 150,
+                      height: 30,
+                      border_width: 0,
+                      min_font_size: 8,
+                      overflow: :shrink_to_fit,
+                    }
+    pdf.move_down(15)
 
     coordinates = [
       ["Lat", ": #{submission.lattitude}"],
