@@ -21,7 +21,7 @@ prawn_document do |pdf|
     pdf.move_down(10)
 
     #title
-    title ||= "<em>PLOTTING</em> BIDANG TANAH" if submission.service_name == "Validasi"
+    title ||= "<em><strong>PLOTTING</strong></em> BIDANG TANAH" if submission.service_name == "Validasi"
     title ||= "INFORMASI POLA RUANG" if submission.service_name == "Pola Ruang"
     title ||= "BUKTI INFORMASI SIPILOT"
     pdf.font_size(15) { pdf.text title, style: :bold, align: :center, inline_format: true }
@@ -138,6 +138,30 @@ prawn_document do |pdf|
                       }
       pdf.move_down(15)
       #endcontent 2
+      # MAPS
+      pdf.font_size(8) { pdf.text "SISTEM KOORDINAT GEOGRAPHIC (LAT/LONG)", style: :bold }
+      coordinates = [
+        ["Lat", ": #{submission.lattitude}"],
+        ["Long", ": #{submission.longitude}"],
+      ]
+      pdf.table coordinates, cell_style: {
+                               width: 150,
+                               height: 17,
+                               border_width: 0,
+                               min_font_size: 8,
+                               overflow: :shrink_to_fit,
+                             }
+      pdf.move_down(5)
+      begin
+        pdf.image open("https://maps.googleapis.com/maps/api/staticmap?center=#{submission.lattitude},#{submission.longitude}&zoom=17&size=200x200&&markers=color:red%7Clabel:C%7C#{submission.lattitude},#{submission.longitude}&maptype=roadmap&key=#{ENV["MAPS_API_KEY"]}")
+      rescue StandardError
+        pdf.text ""
+      end
+      pdf.move_down(5)
+      pdf.font_size(8) {
+        pdf.text "Basemap <em>Roadmap Google Satellite</em> #{Time.now.strftime("%Y")}", inline_format: true
+      }
+      #end maps
     end
 
     ## old
