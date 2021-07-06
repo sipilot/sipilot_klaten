@@ -66,6 +66,14 @@ prawn_document do |pdf|
         # ["Atas Nama", ": #{submission.hak_type_id === 1 ? "Diri sendiri" : "Kuasa"}"],
         ["Atas Nama", ": #{submission.on_behalf}"],
       ]
+      pdf.table data, cell_style: {
+              width: 150,
+              height: 17,
+              border_width: 0,
+              min_font_size: 8,
+              overflow: :shrink_to_fit,
+            }
+      pdf.move_down(15)
       #end content 2
     end
 
