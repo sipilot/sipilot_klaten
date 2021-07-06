@@ -59,7 +59,7 @@ prawn_document do |pdf|
       }
 
       data = [
-        ["Alas Hak", ": #{submission.alas_name}"],
+        ["Alas Hak", ": alas name"],
         ["Nomor", ": #{submission.hak_number}"],
         ["Jenis Hak", ": #{submission.hak_name}"],
         ["NIB", ": #{submission.nib}"],
