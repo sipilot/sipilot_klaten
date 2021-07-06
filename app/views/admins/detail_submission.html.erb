@@ -132,7 +132,7 @@
           KTP
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+          <div class='border border-gray-200 rounded-md divide-y divide-gray-200 items-center justify-center'>
             <% if @submission.image_id_number.nil?  %>
               <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
             <% else %>
@@ -151,12 +151,12 @@
           Surat Kuasa
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+          <div class='border border-gray-200 items-center justify-center rounded-md divide-y divide-gray-200'>
             <% if @submission.image_authority_letter.nil?  %>
-              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
+              <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <button id=button_authority_letter value="<%= url_for(@submission.image_authority_letter) %>">
+                <button id="button_authority_letter" value="<%= url_for(@submission.image_authority_letter) %>">
                   Lihat Dokumen
                 </button>
               </div>
@@ -165,42 +165,42 @@
         </dd>
       </div>
 
-      <div class="bg-gray-5 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt id="measure_letter" class="text-sm font-medium text-gray-500">
           Surat Ukur
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center">
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
-            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-            <% @submission.image_measuring_letter.each do |row| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <button id="button_measure_letter" value="<%= url_for(row.image) %>">
-                  Lihat Dokumen
+            <ul class="space-y-2">
+            <% @submission.image_measuring_letter.each do |measuring_letter| %>
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
+                <button class="button_measure_letter" value="<%= url_for(measuring_letter.image) %>">
+                  Lihat Dokumen 
                 </button>
-              </li>
+              </li>            
             <% end %>
             </ul>
           <% end %>
         </dd>
       </div>
 
-     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt id="land_book" class="text-sm font-medium text-gray-500">
           Buku Tanah
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty? %>
-            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
+          <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
+            <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm"> Dokumen tidak ditemukan </p>
           <% else %>
-            <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-            <% @submission.image_land_book.each do |row| %>
-              <li class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
-                <button id="button_land_book" value="<%= url_for(row.image) %>">
-                  Lihat Dokumen
+            <ul class="space-y-2">
+            <% @submission.image_land_book.each do |land_book| %>
+              <li class="p-10 pl-3 pr-4 py-3 flex items-center justify-center text-sm border border-gray-200 rounded-md divide-y divide-gray-200">
+                <button class="button_land_book" value="<%= url_for(land_book.image) %>">
+                  Lihat Dokumen 
                 </button>
-              </li>              
+              </li>            
             <% end %>
             </ul>
           <% end %>
@@ -227,52 +227,69 @@
     <h1 class="text-xl text-center items-center justify-center" id="title-pdf">  </h1>
   </div>
   <div class="h-5/6 w-full flex items-center justify-center content-center">
-    <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf">
+      <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf">
+      <%# <iframe id="content-pdf" src="" class="h-full w-full">
+        <a id="content-pdf-2" href="path_to_file"">Please Download Here </a>
+      </iframe> %>
   </div>
 </div>
 </div>
 
 <script>
-  const button_land_book = document.getElementById('button_land_book')
-  const button_measure_letter = document.getElementById('button_measure_letter')
+  const button_land_book = document.querySelectorAll('.button_land_book')
+  const button_measure_letter = document.querySelectorAll(".button_measure_letter");
   const button_ktp = document.getElementById('button_ktp')
   const button_authority_letter = document.getElementById('button_authority_letter')
   const closebutton = document.getElementById('closebutton')
   const modal = document.getElementById('modal')
 
-  if(button_measure_letter) {
-    button_measure_letter.addEventListener('click', () => {
-      setupModal(button_measure_letter, "measure_letter")
-      modal.classList.add('scale-100')
-    })
+  if(button_measure_letter.length !== 0) {
+    for (var i = 0; i < button_measure_letter.length; i++) {
+      if(button_measure_letter[i]) {
+        button_measure_letter[i].addEventListener('click', () => {
+        const pdf = button_measure_letter[i].getAttribute('value')
+        setupModal(pdf, "measure_letter")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
   }
+
 
   if(button_ktp) {
     button_ktp.addEventListener('click', () => {
-      setupModal(button_ktp, "ktp")
+      const pdf = button_ktp.getAttribute('value')
+      setupModal(pdf, "ktp")
       modal.classList.add('scale-100')
     })
   }
 
-  if(button_land_book) {
-    button_land_book.addEventListener('click', () => {
-      setupModal(button_land_book, "land_book")
-      modal.classList.add('scale-100')
-    })
+  if(button_land_book.length !== 0) {
+    for (var i = 0; i < button_land_book.length; i++) {
+      if(button_land_book[i]) {
+        button_land_book[i].addEventListener('click', () => {
+        const pdf = button_land_book[i].getAttribute('value')
+        setupModal(pdf, "land_book")
+        modal.classList.add('scale-100')
+      })
+      }
+    }
   }
 
   if(button_authority_letter) {
     button_authority_letter.addEventListener('click', () => {
-      setupModal(button_authority_letter, "authority_letter")
+      const pdf = button_authority_letter.getAttribute('value')
+      setupModal(pdf, "authority_letter")
       modal.classList.add('scale-100')
     })  
   }
-
-  function setupModal(element_button, element_id_title) {
+  
+  
+  function setupModal(path_pdf, element_id_title) {
     var title_data = document.getElementById(element_id_title)
     var title_modal = document.getElementById('title-pdf')
     title_modal.textContent = title_data.textContent
-    var path_pdf = element_button.getAttribute('value')
+    // var path_pdf = element_button.getAttribute('value')
     var content_pdf = document.querySelector('#content-pdf')
     content_pdf.setAttribute("src", path_pdf)
     content_pdf.style.visibility = 'visible';
@@ -281,6 +298,7 @@
   closebutton.addEventListener('click', () => {
     modal.classList.remove('scale-100')
     const pdfViewer = document.getElementById('content-pdf')
+    pdfViewer.setAttribute("src", "")
     pdfViewer.style.visibility = 'hidden';
   })
 </script>
