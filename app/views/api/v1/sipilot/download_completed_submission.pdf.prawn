@@ -11,7 +11,7 @@ prawn_document do |pdf|
       pdf.text "KEMENTERIAN AGRARIA DAN TATA RUANG /", align: :center, style: :bold
       pdf.text "BADAN PERTANAHAN NASIONAL", align: :center, style: :bold
     }
-    pdf.text "KANTOR PERTANAHAN KABUPATEN SRAGEN", align: :center, size: 12
+    pdf.text "KANTOR PERTANAHAN KABUPATEN KLATEN", align: :center, size: 12
     pdf.text "Jalan Veteran Nomor 88, Kelurahan Barenglor, Kecamatan Klaten Utara, Klaten, Kode", align: :center, size: 10
     pdf.text "pos: 57438, Telepon: (0272) 321983, Website: kab-klaten.atrbpn.go.id.", align: :center, size: 10
     pdf.move_down(10)
