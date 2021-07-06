@@ -237,7 +237,7 @@
     for (var i = 0; i < button_measure_letter.length; i++) {
       if(button_measure_letter[i]) {
         button_measure_letter[i].addEventListener('click', () => {
-        const pdf = button_measure_letter[0].getAttribute('value')
+        const pdf = button_measure_letter[i].getAttribute('value')
         setupModal(pdf, "measure_letter")
         modal.classList.add('scale-100')
       })
@@ -258,7 +258,7 @@
     for (var i = 0; i < button_land_book.length; i++) {
       if(button_land_book[i]) {
         button_land_book[i].addEventListener('click', () => {
-        const pdf = button_land_book[0].getAttribute('value')
+        const pdf = button_land_book[i].getAttribute('value')
         setupModal(pdf, "land_book")
         modal.classList.add('scale-100')
       })
