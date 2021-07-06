@@ -67,8 +67,8 @@ prawn_document do |pdf|
       ["Nomor", ": #{submission.hak_number}"],
       ["Jenis Hak", ": #{submission.hak_name}"],
       ["NIB", ": #{submission.nib}"],
-      ["Atas Nama", ": #{submission.act_for === "Diri sendiri" ? "Diri sendiri" : submission.on_behalf}"],
-    # ["Atas Nama", ": #{submission.on_behalf}"],
+      # ["Atas Nama", ": #{submission.act_for === "Diri sendiri" ? "Diri sendiri" : submission.on_behalf}"],
+    ["Atas Nama", ": #{submission.on_behalf}"],
     ]
     pdf.table data, cell_style: {
                       width: 150,
