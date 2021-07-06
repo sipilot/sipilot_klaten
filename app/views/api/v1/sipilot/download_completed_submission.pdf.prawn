@@ -33,33 +33,26 @@ prawn_document do |pdf|
     pdf.move_down(10)
 
     #end new header
-
-    # pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50
-    # pdf.move_down(10)
-    # pdf.move_down(10)
-    # pdf.stroke_horizontal_rule
-    # pdf.move_down(15)
-    pdf.stroke_horizontal_rule
-    pdf.text "Service name : #{submission.service_name}"
-    pdf.text submission.to_json
-    pdf.stroke_horizontal_rule
-    #Constent 1
-    pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
-    # data = [
-    #   ["Alamat", ": #{submission.land_address}"],
-    #   ["Desa", ": #{submission.village_name}"],
-    #   ["Kecamatan", ": #{submission.sub_district_name}"],
-    #   ["Kabupaten", ": Klaten"],
-    #   ["Provinsi", ": JAWA TENGAH"],
-    # ]
-    # pdf.table data, cell_style: {
-    #                   width: 150,
-    #                   height: 17,
-    #                   border_width: 0,
-    #                   min_font_size: 8,
-    #                   overflow: :shrink_to_fit,
-    #                 }
-    # pdf.move_down(15)
+    if submission.service_name == "Pola Ruang"
+      #Constent 1
+      pdf.font_size(8) { pdf.text "Bidang tanah terletak di :" }
+      data = [
+        ["Alamat", ": #{submission.land_address}"],
+        ["Desa", ": #{submission.village_name}"],
+        ["Kecamatan", ": #{submission.sub_district_name}"],
+        ["Kabupaten", ": Klaten"],
+        ["Provinsi", ": JAWA TENGAH"],
+      ]
+      pdf.table data, cell_style: {
+                        width: 150,
+                        height: 17,
+                        border_width: 0,
+                        min_font_size: 8,
+                        overflow: :shrink_to_fit,
+                      }
+      pdf.move_down(15)
+      #Constent 1
+    end
 
     ## old
     data = [
