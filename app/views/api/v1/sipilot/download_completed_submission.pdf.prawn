@@ -161,6 +161,7 @@ prawn_document do |pdf|
       pdf.font_size(8) {
         pdf.text "Basemap <em>Roadmap Google Satellite</em> #{Time.now.strftime("%Y")}", inline_format: true
       }
+      pdf.move_down(5)
       #end maps
 
       #catatan
