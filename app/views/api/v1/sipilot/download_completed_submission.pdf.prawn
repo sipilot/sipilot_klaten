@@ -100,11 +100,20 @@ prawn_document do |pdf|
       }
       #end maps
       #catatan
-      pdf.move_down(15)
+      pdf.move_down(10)
       pdf.font_size(8) {
         pdf.text("Berdasarkan <strong>Peraturan Daerah Kabupaten Klaten Nomor 11 Tahun 2011</strong> tentang Rencana Tata Ruang Wilayah Kabupaten Klaten Tahun 2011-2031, bahwa lokasi yang dimaksud sesuai arahan pola ruang peraturan tersebut di atas, ditetapkan sebagai:", inline_format: true)
       }
+      pdf.text("<strong>#{submission.admin_referral}</strong>", font_size: 8)
       #end catatan
+
+      #start ttd
+      pdf.font_size(9) {
+        pdf.text "Klaten, #{I18n.l DateTime.now, locale: :id, format: :short}", align: :right
+      }
+      pdf.move_down(5)
+      pdf.image "#{Rails.root}/app/assets/images/logo-sipilot-file.jpg", width: 50, height: 50, position: :right
+      #end ttd
     end
 
     ## old
