@@ -216,11 +216,11 @@
     <h1 class="text-xl text-center items-center justify-center" id="title-pdf">  </h1>
   </div>
   <div class="h-5/6 w-full flex items-center justify-center content-center">
+      <embed id="content-pdf" class="h-full w-full" src="" type="application/pdf">
       <%# <iframe id="content-pdf" class="h-full w-full" src="" type="application/pdf"> </iframe> %>
-      <%# <embed id="content-pdf-2" class="h-full w-full" src="" type="application/x-pdf"> %>
-      <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
+      <%# <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
         <a id="content-pdf-2" href="path_to_file"">Please Download Here </a>
-      </object>
+      </object> %>
   </div>
 </div>
 </div>
@@ -281,9 +281,7 @@
     title_modal.textContent = title_data.textContent
     // var path_pdf = element_button.getAttribute('value')
     var content_pdf = document.querySelector('#content-pdf')
-    var content_pdf_2 = document.querySelector('#content-pdf-2')
-    content_pdf_2.setAttribute("href", path_pdf)
-    content_pdf.setAttribute("data", path_pdf)
+    content_pdf.setAttribute("src", path_pdf)
     content_pdf.style.visibility = 'visible';
   }
 
