@@ -4,6 +4,17 @@ prawn_document do |pdf|
   @submissions_exports.each do |row|
 
     # TITLE 1
+    # pdf.float {
+    #   pdf.image "#{Rails.root}/app/assets/images/logo-klaten.png", width: 50, height: 50
+    # }
+    # pdf.font_size(15) {
+    #   pdf.text "KEMENTERIAN AGRARIA DAN TATA RUANG /", align: :center, style: :bold
+    #   pdf.text "BADAN PERTANAHAN NASIONAL", align: :center, style: :bold
+    # }
+    # pdf.text "KANTOR PERTANAHAN KABUPATEN SRAGEN", align: :center, size: 12
+    # pdf.text "Jl. Veteran No. 10 Tlp. 0271-891075 http://kab-sragen.atrbpn.go.id", align: :center, size: 10
+    # pdf.move_down(10)
+    ## new header
     pdf.float {
       pdf.image "#{Rails.root}/app/assets/images/logo-klaten.png", width: 50, height: 50
     }
@@ -11,9 +22,11 @@ prawn_document do |pdf|
       pdf.text "KEMENTERIAN AGRARIA DAN TATA RUANG /", align: :center, style: :bold
       pdf.text "BADAN PERTANAHAN NASIONAL", align: :center, style: :bold
     }
-    pdf.text "KANTOR PERTANAHAN KABUPATEN SRAGEN", align: :center, size: 12
-    pdf.text "Jl. Veteran No. 10 Tlp. 0271-891075 http://kab-sragen.atrbpn.go.id", align: :center, size: 10
+    pdf.text "KANTOR PERTANAHAN KABUPATEN KLATEN", align: :center, size: 12
+    pdf.text "Jalan Veteran Nomor 88, Kelurahan Barenglor, Kecamatan Klaten Utara, Klaten, Kode", align: :center, size: 10
+    pdf.text "pos: 57438, Telepon: (0272) 321983, Website: kab-klaten.atrbpn.go.id.", align: :center, size: 10
     pdf.move_down(10)
+    ## end new header
 
     # DRAW LINE
     pdf.stroke_horizontal_rule
