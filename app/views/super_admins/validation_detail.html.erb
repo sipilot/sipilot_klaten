@@ -158,7 +158,7 @@
         <dt id="measure_letter" class="text-sm font-medium text-gray-500">
           Surat Ukur
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
             Gambar tidak ditemukan
           <% else %>
@@ -178,8 +178,8 @@
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt id="land_book" class="text-sm font-medium text-gray-500">
           Buku Tanah
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        </dt>        
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
             Gambar tidak ditemukan
           <% else %>
@@ -219,7 +219,7 @@
       <%# <iframe id="content-pdf" class="h-full w-full" src="" type="application/pdf"> </iframe> %>
       <%# <embed id="content-pdf-2" class="h-full w-full" src="" type="application/x-pdf"> %>
       <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
-        Please Download Here <a id="content-pdf-2" href="path_to_file"">Download</a>
+        <a id="content-pdf-2" href="path_to_file"">Please Download Here </a>
       </object>
   </div>
 </div>

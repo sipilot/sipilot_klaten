@@ -132,7 +132,7 @@
           KTP
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+          <div class='border border-gray-200 rounded-md divide-y divide-gray-200 items-center justify-center'>
             <% if @submission.image_id_number.nil?  %>
               <p class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">Dokumen tidak tersedia</p>
             <% else %>
@@ -151,9 +151,9 @@
           Surat Kuasa
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <div class='border border-gray-200 rounded-md divide-y divide-gray-200'>
+          <div class='border border-gray-200 items-center justify-center rounded-md divide-y divide-gray-200'>
             <% if @submission.image_authority_letter.nil?  %>
-              Gambar tidak ditemukan
+              Dokumen tidak ditemukan
             <% else %>
               <div class="pl-3 pr-4 py-3 flex items-center justify-center text-sm">
                 <button id="button_authority_letter" value="<%= url_for(@submission.image_authority_letter) %>">
@@ -169,9 +169,9 @@
         <dt id="measure_letter" class="text-sm font-medium text-gray-500">
           Surat Ukur
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center">
           <% if @submission.image_measuring_letter.nil? || @submission.image_measuring_letter.empty?  %>
-            Gambar tidak ditemukan
+            Dokumen tidak ditemukan
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_measuring_letter.each do |measuring_letter| %>
@@ -190,9 +190,9 @@
         <dt id="land_book" class="text-sm font-medium text-gray-500">
           Buku Tanah
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 items-center justify-center" >
           <% if @submission.image_land_book.nil? || @submission.image_land_book.empty?  %>
-            Gambar tidak ditemukan
+            Dokumen tidak ditemukan
           <% else %>
             <ul class="space-y-2">
             <% @submission.image_land_book.each do |land_book| %>
@@ -233,7 +233,7 @@
         Example fallback content: This browser does not support PDFs. Please download the PDF to view it: Download PDF.
       </object> %>
       <object id="content-pdf" data="" type="application/pdf" class="h-full w-full">
-        Please Download Here <a id="content-pdf-2" href="path_to_file"">Download</a>
+        <a id="content-pdf-2" href="path_to_file"">Please Download Here </a>
       </object>
   </div>
 </div>
