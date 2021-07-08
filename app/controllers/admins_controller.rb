@@ -183,7 +183,7 @@ class AdminsController < ApplicationController
         left = 0
         bottom = 650
 
-        @exports.each do |submission, i|
+        @exports.each_with_index do |submission, i|
           pdf.text "index: #{i}"
           # pdfUrl = "http://www.africau.edu/images/default/sample.pdf"
           pdf.text "Nomor Pendaftaran : #{submission.submission_code}"
