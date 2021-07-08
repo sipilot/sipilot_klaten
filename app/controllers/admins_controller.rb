@@ -167,40 +167,23 @@ class AdminsController < ApplicationController
       format.pdf do
         # headers['Content-Disposition'] = "attachment; filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
         # headers["Content-Disposition"] = "filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
-        pdf = Prawn::Document.new
         newpdf = CombinePDF.new
-        # pdf.text "Semua Permohonan"
+        pdf = Prawn::Document.new
+        pdf.text "Semua Permohonan"
 
-        # if @gteq_params.present? && @lteq_params.present?
-        #   pdf.move_down(10)
-        #   pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
-        # end
+        if @gteq_params.present? && @lteq_params.present?
+          pdf.move_down(10)
+          pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
+        end
 
-        # pdf.move_down(10)
-        # pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
-        # pdf.move_down(20)
+        pdf.move_down(10)
+        pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
+        pdf.move_down(20)
 
-        # left = 0
-        # bottom = 650
+        left = 0
+        bottom = 650
 
-        @exports.each_with_index do |submission, i|
-          # pdf.text "index: #{i}"
-          if i == 0
-            pdf.text "Semua Permohonan"
-
-            if @gteq_params.present? && @lteq_params.present?
-              pdf.move_down(10)
-              pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
-            end
-
-            pdf.move_down(10)
-            pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
-            pdf.move_down(20)
-
-            left = 0
-            bottom = 650
-          end
-          # pdfUrl = "http://www.africau.edu/images/default/sample.pdf"
+        @exports.each_with_index do |submission, index|
           pdf.text "Nomor Pendaftaran : #{submission.submission_code}"
           pdf.text "Nomor Hak : #{submission.hak_number}"
           pdf.text "Nama Pendaftar : #{submission.on_behalf}"
@@ -209,31 +192,24 @@ class AdminsController < ApplicationController
           pdf.text "Alamat tanah : #{submission.land_address}"
           pdf.text "Desa : #{submission.village_name}"
 
-          images ||= submission.measuring_letter_images if @role == "admin validasi"
-          images ||= submission.land_book_images
+          images ||= submission.measuring_letter_images
+          newpdf << CombinePDF.parse(pdf.render).pages[index]
 
-          data_pdf = pdf.render()
           unless @exports.last.id == submission.id
             pdf.start_new_page
           end
 
-          newpdf << CombinePDF.parse(data_pdf)
-          images.each.with_index(1) do |file, index|
+          images.each do |file|
             begin
               pdfUrl = file.image.service_url
-              # pdfUrl = "https://sipilot-storage.s3.ap-southeast-1.amazonaws.com/ensjocrum7ugd37irb4z0z3kkc45?response-content-disposition=inline%3B%20filename%3D%22WFO%20-%20Revisi%20Juni%20%25282%2529.pdf%22%3B%20filename%2A%3DUTF-8%27%27WFO%2520-%2520Revisi%2520Juni%2520%25282%2529.pdf&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVOL7UPQMM6INKR5D%2F20210707%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20210707T094058Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=777d8a2cff6759b4b9e0a41c6631cb0e8ef407cba7db4ab5388c01cb96f0cb31"
-              # pdf.text file.image.service_url
               newpdf << CombinePDF.parse(Net::HTTP.get_response(URI.parse(pdfUrl)).body)
             rescue StandardError
               pdf.text "no link"
             end
           end
-          # pdf
-
         end
 
         send_data newpdf.to_pdf, filename: "semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf", type: "application/pdf"
-
         # send_data newpdf.to_pdf, filename: "Order #1.pdf", type: "application/pdf", disposition: "inline"
       end
       format.html { render :applications }
