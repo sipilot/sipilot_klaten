@@ -232,7 +232,7 @@ class AdminsController < ApplicationController
 
         end
 
-        send_data newpdf.to_pdf, filename: "semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf", type: "application/pdf", disposition: "inline"
+        send_data newpdf.to_pdf, filename: "semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf", type: "application/pdf"
 
         # send_data newpdf.to_pdf, filename: "Order #1.pdf", type: "application/pdf", disposition: "inline"
       end
