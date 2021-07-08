@@ -204,7 +204,7 @@ class AdminsController < ApplicationController
               pdfUrl = file.image.service_url
               newpdf << CombinePDF.parse(Net::HTTP.get_response(URI.parse(pdfUrl)).body)
             rescue StandardError
-              pdf.text "no link"
+              # pdf.text "no link"
             end
           end
         end
