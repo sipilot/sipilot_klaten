@@ -170,7 +170,7 @@ class AdminsController < ApplicationController
         pdf = Prawn::Document.new
         newpdf = CombinePDF.new
         pdf.text "Semua Permohonan"
-        pdf.text "index: #{i}"
+        pdf.text "index: #{i.to_s}"
         if @gteq_params.present? && @lteq_params.present?
           pdf.move_down(10)
           pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
