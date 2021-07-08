@@ -160,7 +160,7 @@ class AdminsController < ApplicationController
       return
     end
 
-    respond_to do |format, i|
+    respond_to do |format|
       format.xlsx {
         response.headers["Content-Disposition"] = "attachment; filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.xlsx\""
       }
@@ -170,7 +170,7 @@ class AdminsController < ApplicationController
         pdf = Prawn::Document.new
         newpdf = CombinePDF.new
         pdf.text "Semua Permohonan"
-        pdf.text "index: #{i.to_s}"
+
         if @gteq_params.present? && @lteq_params.present?
           pdf.move_down(10)
           pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
@@ -183,7 +183,8 @@ class AdminsController < ApplicationController
         left = 0
         bottom = 650
 
-        @exports.each do |submission|
+        @exports.each do |submission, i|
+          pdf.text "index: #{i}"
           # pdfUrl = "http://www.africau.edu/images/default/sample.pdf"
           pdf.text "Nomor Pendaftaran : #{submission.submission_code}"
           pdf.text "Nomor Hak : #{submission.hak_number}"
