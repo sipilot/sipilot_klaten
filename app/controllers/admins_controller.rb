@@ -169,22 +169,37 @@ class AdminsController < ApplicationController
         # headers["Content-Disposition"] = "filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
         pdf = Prawn::Document.new
         newpdf = CombinePDF.new
-        pdf.text "Semua Permohonan"
+        # pdf.text "Semua Permohonan"
 
-        if @gteq_params.present? && @lteq_params.present?
-          pdf.move_down(10)
-          pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
-        end
+        # if @gteq_params.present? && @lteq_params.present?
+        #   pdf.move_down(10)
+        #   pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
+        # end
 
-        pdf.move_down(10)
-        pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
-        pdf.move_down(20)
+        # pdf.move_down(10)
+        # pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
+        # pdf.move_down(20)
 
-        left = 0
-        bottom = 650
+        # left = 0
+        # bottom = 650
 
         @exports.each_with_index do |submission, i|
-          pdf.text "index: #{i}"
+          # pdf.text "index: #{i}"
+          if i == 0
+            pdf.text "Semua Permohonan"
+
+            if @gteq_params.present? && @lteq_params.present?
+              pdf.move_down(10)
+              pdf.text "Dari : #{@gteq_params}, Sampai : #{@lteq_params}"
+            end
+
+            pdf.move_down(10)
+            pdf.text "Di Export pada : #{Time.now.strftime("%d-%m-%Y")}"
+            pdf.move_down(20)
+
+            left = 0
+            bottom = 650
+          end
           # pdfUrl = "http://www.africau.edu/images/default/sample.pdf"
           pdf.text "Nomor Pendaftaran : #{submission.submission_code}"
           pdf.text "Nomor Hak : #{submission.hak_number}"
