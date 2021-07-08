@@ -192,7 +192,7 @@ class AdminsController < ApplicationController
           pdf.text "Alamat tanah : #{submission.land_address}"
           pdf.text "Desa : #{submission.village_name}"
 
-          images ||= submission.measuring_letter_images
+          images ||= submission.land_book_images
           newpdf << CombinePDF.parse(pdf.render).pages[index]
 
           unless @exports.last.id == submission.id
