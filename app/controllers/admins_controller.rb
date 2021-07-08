@@ -165,9 +165,9 @@ class AdminsController < ApplicationController
         response.headers["Content-Disposition"] = "attachment; filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.xlsx\""
       }
       format.pdf do
-
         # headers['Content-Disposition'] = "attachment; filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
         # headers["Content-Disposition"] = "filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
+        pdf = Prawn::Document.new
         pdf.text "Semua Permohonan"
 
         send_data pdf.render, filename: "Order #1.pdf", type: "application/pdf", disposition: "inline"
