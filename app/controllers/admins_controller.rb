@@ -168,6 +168,7 @@ class AdminsController < ApplicationController
         # headers['Content-Disposition'] = "attachment; filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
         # headers["Content-Disposition"] = "filename=\"semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf\""
         pdf = Prawn::Document.new
+        newpdf = CombinePDF.new
         pdf.text "Semua Permohonan"
         if @gteq_params.present? && @lteq_params.present?
           pdf.move_down(10)
@@ -213,9 +214,9 @@ class AdminsController < ApplicationController
 
         end
 
-        # send_data newpdf.to_pdf, filename: "semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf", type: "application/pdf"
+        send_data newpdf.to_pdf, filename: "semua-permohonan-#{Formatter.date_dmy(Time.now)}.pdf", type: "application/pdf", disposition: "inline"
 
-        send_data newpdf.to_pdf, filename: "Order #1.pdf", type: "application/pdf", disposition: "inline"
+        # send_data newpdf.to_pdf, filename: "Order #1.pdf", type: "application/pdf", disposition: "inline"
       end
       format.html { render :applications }
     end
